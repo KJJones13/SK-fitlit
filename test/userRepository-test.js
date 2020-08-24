@@ -1,18 +1,21 @@
 const chai = require('chai');
-const expect = chai.expect
-const userRespository = require('../src/userRespository');
-const users = require('../data/users');
+const expect = chai.expect;
+const UserRepository = require('../src/userRepository');
+const Users = require('../data/users');
 
-describe('userRespository', function() {
-  let userRespository;
+describe('UserRepository', function() {
+  let userRepository;
   beforeEach(function() {
-    user = new User(usersData[0]);
-    userRespository = new UserRepository(data);
+    // user = new User(userData);
+    userRepository = new UserRepository();
   });
 
   it('should be a function', function() {
-    expect(UserRespository).to.be.a('function');
+    expect(UserRepository).to.be.a('function');
   });
 
-  
+  it('should be an instance of UserRepository', function() {
+    expect(userRepository).to.be.an.instanceof(UserRepository);
+  });
+
 })
