@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const User = require('../src/user');
-const userData = require('../data/users');
+const userData = require('../data/sample-test');
 const UserRepository = require('../src/userRepository');
 
 describe('User', function() {
@@ -39,4 +39,10 @@ describe('User', function() {
     expect(user1.dailyStepGoal).to.equal(10000)
     expect(user1.friends).to.deep.equal([16, 4, 8])
   });
+
+  it('should return a users first name only', function() {
+    expect(user1.getFirstName()).to.equal('Luisa');
+  })
 });
+
+// console.log(userData);
