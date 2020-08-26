@@ -18,9 +18,10 @@ function greeting() {
 function displayInfoCard() {
   userInfo[0].innerText = `${user.address}`;
   userInfo[1].innerText = `${user.email}`;
-  userInfo[2].innerText = `${user.strideLength}`;
-  userInfo[3].innerText = `${user.dailyStepGoal}`;
-  userInfo[4].innerText = `${user.friends}`;
+  userInfo[2].innerText = `Stride Length: ${user.strideLength}`;
+  userInfo[3].innerText = `Daily Step Goal: ${user.dailyStepGoal}`;
+  userInfo[4].innerText = `Average Step Goal: ${userRepository.calculateAverageStepGoal()}`;
+  userInfo[5].innerText = `Friends: ${getFriendsNames()}`;
 };
 
 function getFriendsNames(data) {
@@ -29,4 +30,3 @@ function getFriendsNames(data) {
       return friendMatch.name;
     });
   };
-
