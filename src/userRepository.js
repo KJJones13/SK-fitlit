@@ -12,9 +12,10 @@ class UserRepository {
     const totalStepGoal = this.data.reduce((totalSteps, info) => {
       return totalSteps += info.dailyStepGoal
     }, 0)
-    return totalStepGoal / this.data.length; 
+    return totalStepGoal / this.data.length;
   }
 }
+
 if (typeof module !== 'undefined') {
   module.exports = UserRepository;
 }

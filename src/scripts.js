@@ -1,3 +1,4 @@
+
 const userGreeting = document.querySelector('#user-name');
 const userInfo = document.querySelectorAll('.user-info-text');
 const user = new User(userData[10]);
@@ -28,3 +29,4 @@ function getFriendsNames(data) {
       return friendMatch.name;
     });
   };
+
