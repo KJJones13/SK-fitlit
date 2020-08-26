@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Activity Tracker</title>
-    <link rel="stylesheet" href="/src/style.css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap">
+    <link rel="stylesheet" href="style.css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap">
   </head>
   <body>
     <h1 id="header-text">Activity Tracker</h1>
@@ -17,13 +17,12 @@
           <p class="user-info-text" id="user-stride-length"></p>
           <p class="user-info-text" id="user-daily-step-goal"></p>
           <p class="user-info-text" id="all-average-step-goal"></p>
-          <p class="user-info-text">Friends</p>
-          <ul class="list-text" id="friends-list"></ul>
+          <ul class="user-info-text" id="friends-list"></ul>
         </section>
       </aside>
       <section class="left-section">
         <section class="activity">
-          <p class="activity-info" id="daily-steps"></p>
+          <p class="activity-info" id="daily-steps">Activity</p>
           <p class="activity-info" id="daily-mins-active"></p>
           <p class="activity-info" id="daily-miles-walked"></p>
           <p class="activity-info" id="num-steps-ranking"></p>
@@ -36,13 +35,13 @@
       </section>
       <section class="middle-section">
         <section class="hydration">
-          <p class="hydration-info" id="daily-ounces"></p>
+          <p class="hydration-info" id="daily-ounces">Hydration</p>
           <p class="hydration-info" id="weekly-ounces"></p>
         </section>
       </section>
       <section class="right-section">
         <section class="sleep-section">
-          <p class="sleep-info" id="daily-sleep-quality"></p>
+          <p class="sleep-info" id="daily-sleep-quality">Sleep</p>
           <p class="sleep-info" id="daily-sleep-hours"></p>
           <p class="sleep-info" id="weekly-sleep-quality"></p>
           <p class="sleep-info" id="weekly-sleep-hours"></p>
@@ -51,6 +50,8 @@
         </section>
       </section>
     </main>
+    <script type="text/javascript" src="../src/user.js"></script>
+    <script type="text/javascript" src="../src/userRepository.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
