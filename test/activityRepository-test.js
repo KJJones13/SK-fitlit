@@ -5,12 +5,19 @@ const ActivityRepository = require('../src/activityRepository');
 const activityData = require('../data/activity-sample-data');
 
 describe('Activity Repository', function() {
-  let user1, activityRepository;
+  let user, activityRepository;
 
   beforeEach(function() {
-    let user1 = new User({
-      id: 1
-    });
+    user = new User({
+      id: 1,
+      name: 'Luisa Hane',
+      address: '15195 Nakia Tunnel, Erdmanport VA 19901-1697',
+      email: 'Diana.Hayes1@hotmail.com',
+      strideLength: 4.3,
+      dailyStepGoal: 10000,
+      friends: [16, 4, 8]
+    })
+
     activityRepository = new ActivityRepository(activityData[0])
   });
 
@@ -29,4 +36,8 @@ describe('Activity Repository', function() {
     expect(activityRepository.minutesActive).to.equal(140);
     expect(activityRepository.flightsOfStairs).to.equal(16);
   });
+
+  it('should calculate how many miles a user has walked that day', function() {
+    expect(activityRepository.calculateMilesWalked(user)).to.equal(2.91)
+  })
 });
