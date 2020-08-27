@@ -39,5 +39,9 @@ describe('Activity Repository', function() {
 
   it('should calculate how many miles a user has walked that day', function() {
     expect(activityRepository.calculateMilesWalked(user)).to.equal(2.91)
-  })
+  });
+
+  it('should check if the user has reached their step goal', function() {
+    expect(activityRepository.checkStepGoal(user)).to.equal(false)
+  });
 });

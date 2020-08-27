@@ -11,6 +11,10 @@ class ActivityRepository {
   calculateMilesWalked(user) {
     return parseFloat(((this.numSteps * user.strideLength) / 5280).toFixed(2));
   }
+
+  checkStepGoal(user) {
+    return this.numSteps > user.dailyStepGoal;
+  }
 }
 
 if (typeof module !== 'undefined') {
