@@ -6,6 +6,7 @@ const hydrationInfo = document.querySelectorAll('.hydration-info');
 const user = new User(userData[10]);
 const userRepository = new UserRepository(userData);
 const hydrationRepository = new HydrationRepository(hydrationData);
+const hydration = new Hydration(hydrationData);
 
 window.addEventListener('load', loadHandler);
 
@@ -13,6 +14,7 @@ function loadHandler() {
   greeting();
   displayInfoCard();
   displayTodaysOunces();
+  displayWeeklyOunces();
 };
 
 function greeting() {
@@ -36,5 +38,9 @@ function getFriendsNames(data) {
 };
 
 function displayTodaysOunces() {
-  hydrationInfo[0].innerText = `Today's Ounces: ${hydrationRepository.specificDayOunces(1, '2019/06/19')}`;
+  hydrationInfo[0].innerText = `Today's Ounces: ${hydrationRepository.specificDayOunces(user.id, '2019/06/19')}`;
 };
+
+function displayWeeklyOunces() {
+  hydrationInfo[1].innerText = `Weekly Ounces: ${hydrationRepository.weeklyOunces(user.id, hydration.date)}`
+}

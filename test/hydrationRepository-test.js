@@ -36,6 +36,6 @@ describe('Hydration Repository', function() {
   });
 
   it('should return weekly ounces', function() {
-    expect(hydrationRepository.weeklyOunces(1, "2019/06/19")).to.deep.equal(hydrationData);
+    expect(hydrationRepository.weeklyOunces(1, "2019/06/15")).to.deep.equal([37, 69, 96, 61, 91, 50, 50]);
   });
 });

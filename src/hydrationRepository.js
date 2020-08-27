@@ -23,8 +23,11 @@ class HydrationRepository {
   }
 
   weeklyOunces(userID, date) {
-    let sortedEntries = this.sortDates(userID);
-    return sortedEntries;
+    let allSortedEntries = this.sortDates(userID);
+    let startDate = allSortedEntries.indexOf(allSortedEntries.find(item => item.date === date));
+    let weekEntries = allSortedEntries.slice(startDate, (startDate + 7))
+    let weekOunces = weekEntries.map(entry => entry.numOunces)
+    return weekOunces;
   }
 }
 
