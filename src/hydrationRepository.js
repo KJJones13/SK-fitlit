@@ -6,6 +6,12 @@ class HydrationRepository {
     this.numOunces = hydrationData.numOunces
   }
 
+  sortDates(hydrationData, userID) {
+    let userEntries = this.hydrationData.filter(user => this.userID === userID);
+    let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date))
+    return dateSort
+  }
+
   todaysOunces(userID, date) {
       return this.numOunces
   }
@@ -17,8 +23,14 @@ class HydrationRepository {
     }, 0)
     return parseFloat((totalOunces / userEntries.length).toFixed(0));
   }
-}
 
+  calculateWeeklyOunces(userID, startDate) {
+
+  }
+}
+// find ounces for the startDate
+// increment the startDate by one
+// find
 
 if (typeof module !== 'undefined') {
   module.exports = HydrationRepository;

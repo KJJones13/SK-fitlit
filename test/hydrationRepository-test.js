@@ -37,4 +37,9 @@ describe('Hydration Repository', function() {
     expect(hydrationRepository.calculateAverageOunces()).to.equal(65)
   });
 
+  it('should sort the hydrationData for a user', function() {
+    hydrationRepository = new HydrationRepository(hydrationData)
+    expect(hydrationRepository.sortDates()).to.deep.equal(hydrationData);
+  });
+
 });
