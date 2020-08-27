@@ -13,6 +13,7 @@ function loadHandler() {
   greeting();
   displayInfoCard();
   displayTodaysOunces();
+  displayWeeklyOunces();
 };
 
 function greeting() {
@@ -38,3 +39,7 @@ function getFriendsNames(data) {
 function displayTodaysOunces() {
   hydrationInfo[0].innerText = `Today's Ounces: ${hydrationRepository.specificDayOunces(1, '2019/06/19')}`;
 };
+
+function displayWeeklyOunces() {
+  hydrationInfo[1].innerText = `Weekly Ounces: ${hydrationRepository.weeklyOunces(1, '2019/06/19')}`
+}

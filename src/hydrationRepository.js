@@ -23,11 +23,17 @@ class HydrationRepository {
   }
 
   weeklyOunces(userID, date) {
-    let sortedEntries = this.sortDates(userID);
-    return sortedEntries;
+    let allSortedEntries = this.sortDates(userID);
+    let startDate = allSortedEntries.indexOf(allSortedEntries.find(item => item.date === date));
+    let weekEntries = allSortedEntries.slice(startDate, (startDate + 7))
+    let weekOunces = weekEntries.map(entry => entry.numOunces)
+    return weekOunces;
   }
 }
 
 if (typeof module !== 'undefined') {
   module.exports = HydrationRepository;
 }
+
+//given a userId and start date, write a method that will return the daily numOunces in an array for 7 consecutive days
+//find the index for the element found with userid/date use slice to just get
