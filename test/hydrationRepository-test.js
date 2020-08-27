@@ -11,7 +11,7 @@ describe('Hydration Repository', function() {
     let user1 = new User({
       id: 1
     });
-    hydrationRepository = new HydrationRepository({userID: 1, date: '2019/06/15', numOunces: 37})
+    hydrationRepository = new HydrationRepository(hydrationData[0])
   });
 
   it('should be a function', function() {
@@ -29,6 +29,12 @@ describe('Hydration Repository', function() {
   });
 
   it('should return the numOunces for the day', function() {
-    expect(hydrationRepository.todaysOunces(1, '2019/06/15')).to.equal(37);
+    expect(hydrationRepository.todaysOunces()).to.equal(37);
   });
+
+  it('should calculate the average numOunces', function() {
+    hydrationRepository = new HydrationRepository(hydrationData)
+    expect(hydrationRepository.calculateAverageOunces()).to.equal(65)
+  });
+
 });
