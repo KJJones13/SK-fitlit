@@ -1,36 +1,32 @@
 class HydrationRepository {
-  constructor(hydrationData, userID) {
+  constructor(hydrationData) {
     this.hydrationData = hydrationData;
-    this.userID = hydrationData.userID;
-    this.date = hydrationData.date;
-    this.numOunces = hydrationData.numOunces
   }
 
-  sortDates(hydrationData, userID) {
-    let userEntries = this.hydrationData.filter(user => this.userID === userID);
-    let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date))
-    return dateSort
+  sortDates(userID) {
+    let userEntries = this.hydrationData.filter(user => user.userID === userID);
+    let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date));
+    return dateSort;
   }
 
-  todaysOunces(userID, date) {
-      return this.numOunces
-  }
-
-  calculateAverageOunces(hydrationData, userID) {
-    let userEntries = this.hydrationData.filter(user => this.userID === userID);
-    let totalOunces = userEntries.reduce((ounces, ounce) => {
-      return ounces += ounce.numOunces;
+  calculateAverageOunces(userID) {
+    let userEntries = this.hydrationData.filter(user => user.userID === userID);
+    let totalOunces = userEntries.reduce((ounces, entry) => {
+      return ounces += entry.numOunces;
     }, 0)
     return parseFloat((totalOunces / userEntries.length).toFixed(0));
   }
 
-  calculateWeeklyOunces(userID, startDate) {
+  specificDayOunces(userID, date) {
+    let dayEntry = this.hydrationData.find(entry => entry.userID === userID && entry.date === date);
+    return dayEntry.numOunces;
+  }
 
+  weeklyOunces(userID, date) {
+    let sortedEntries = this.sortDates(userID);
+    return sortedEntries;
   }
 }
-// find ounces for the startDate
-// increment the startDate by one
-// find
 
 if (typeof module !== 'undefined') {
   module.exports = HydrationRepository;
