@@ -68,4 +68,9 @@ describe('Sleep Repository', function() {
     expect(sleepRepository.getMostHoursSlept('2019/06/15')).to.deep.equal(3)
   })
 
+  it.only('should return users who average a sleep quality greater than 3 over the course of a week', function() {
+    sleepRepository = new SleepRepository(sleepData);
+    expect(sleepRepository.getUsersAverageSleepQuality('2019/06/15')).to.deep.equal(1);
+  })
+
 });
