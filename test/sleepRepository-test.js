@@ -9,6 +9,7 @@ describe('Sleep Repository', function() {
 
   beforeEach(function() {
     sleepRepository = new SleepRepository(sleepData[0])
+
   });
 
   it('should be a function', function() {
@@ -48,4 +49,9 @@ describe('Sleep Repository', function() {
     sleepRepository = new SleepRepository(sleepData)
     expect(sleepRepository.getAllAverageSleepQuality()).to.equal(3.4)
   });
+
+  it('should return the hours slept each day for the week for a user', function() {
+    sleepRepository = new SleepRepository(sleepData)
+    expect(sleepRepository.getWeeklySleepHours(1, '2019/06/15')).to.deep.equal([6.1, 7, 10.8, 5.4, 4.1, 9.6, 5.1])
+  })
 });

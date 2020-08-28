@@ -1,10 +1,16 @@
 class SleepRepository {
   constructor(sleepData) {
     this.sleepData = sleepData;
-    this.userID = sleepData.userID;
-    this.date = sleepData.date;
-    this.hoursSlept = sleepData.hoursSlept;
-    this.sleepQuality = sleepData.sleepQuality;
+    // this.userID = sleepData.userID;
+    // this.date = sleepData.date;
+    // this.hoursSlept = sleepData.hoursSlept;
+    // this.sleepQuality = sleepData.sleepQuality;
+  }
+
+  sortDates(userID) {
+    let userEntries = this.sleepData.filter(user => user.userID === userID);
+    let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date));
+    return dateSort;
   }
 
   getSleepHoursDay(userID, date) {
@@ -37,6 +43,14 @@ class SleepRepository {
       return quality += user.sleepQuality
     }, 0)
     return parseFloat(((totalSleepQuality / this.sleepData.length)).toFixed(1))
+  }
+
+  getWeeklySleepHours(userID, date) {
+    let allSortedEntries = this.sortDates(userID);
+    let startDate = allSortedEntries.indexOf(allSortedEntries.find(item => item.date === date));
+    let weekEntries = allSortedEntries.slice(startDate, (startDate + 7));
+    let weeklySleepHours = weekEntries.map(entry => entry.hoursSlept)
+    return weeklySleepHours;
   }
 }
 
