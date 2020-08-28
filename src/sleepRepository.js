@@ -8,8 +8,8 @@ class SleepRepository {
   }
 
   getSleepHoursDay(userID, date) {
-    // let sleepHours = this.sleepData.find(entry => entry.userID === userID && entry.date === date);
-    return this.hoursSlept;
+    let sleepHours = this.sleepData.find(entry => entry.userID === userID && entry.date === date);
+    return sleepHours.hoursSlept;
   }
 
   getSleepQualityDay(userID, date) {
