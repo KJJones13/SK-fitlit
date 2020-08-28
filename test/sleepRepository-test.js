@@ -38,4 +38,14 @@ describe('Sleep Repository', function() {
     sleepRepository = new SleepRepository(sleepData)
     expect(sleepRepository.getAverageSleepHours(1)).to.equal(6.9)
   });
+
+  it('should return the average sleep quality for a user', function() {
+    sleepRepository = new SleepRepository(sleepData)
+    expect(sleepRepository.getAverageSleepQuality(1)).to.equal(3.4)
+  });
+
+  it('should return the average sleep quality for a user', function() {
+    sleepRepository = new SleepRepository(sleepData)
+    expect(sleepRepository.getAllAverageSleepQuality()).to.equal(3.4)
+  });
 });
