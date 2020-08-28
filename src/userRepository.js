@@ -14,6 +14,11 @@ class UserRepository {
     }, 0)
     return totalStepGoal / this.data.length;
   }
+
+  getNameByID(id) {
+    const match = this.data.find(name => name.id === id);
+    return match.name;
+  };
 }
 
 if (typeof module !== 'undefined') {

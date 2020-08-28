@@ -2,11 +2,13 @@
 const userGreeting = document.querySelector('#user-name');
 const userInfo = document.querySelectorAll('.user-info-text');
 const hydrationInfo = document.querySelectorAll('.hydration-info');
+const sleepInfo = document.querySelectorAll('.sleep-info');
 
 const user = new User(userData[10]);
 const userRepository = new UserRepository(userData);
 const hydrationRepository = new HydrationRepository(hydrationData);
 const hydration = new Hydration(hydrationData);
+const sleepRepository = new SleepRepository(sleepData);
 
 window.addEventListener('load', loadHandler);
 
@@ -15,6 +17,7 @@ function loadHandler() {
   displayInfoCard();
   displayTodaysOunces();
   displayWeeklyOunces();
+  displayTodaysSleepHours();
 };
 
 function greeting() {
@@ -43,4 +46,8 @@ function displayTodaysOunces() {
 
 function displayWeeklyOunces() {
   hydrationInfo[1].innerText = `Weekly Ounces: ${hydrationRepository.weeklyOunces(user.id, hydrationData.date)}`
-}
+};
+
+function displayTodaysSleepHours() {
+  sleepInfo[1].innerText = `Today's Hours Slept: ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')}`
+};
