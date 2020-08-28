@@ -40,4 +40,9 @@ describe('User Repository', function() {
     expect(userRepository.calculateAverageStepGoal()).to.equal(6400)
   });
 
+  it.only('should find a user name', function() {
+    // user = new User()
+    expect(userRepository.getNameByID(1)).to.equal('Luisa Hane');
+  })
+
 })
