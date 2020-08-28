@@ -52,6 +52,14 @@ class SleepRepository {
     let weeklySleepHours = weekEntries.map(entry => entry.hoursSlept)
     return weeklySleepHours;
   }
+
+  getWeeklySleepQuality(userID, date) {
+    let allSortedEntries = this.sortDates(userID);
+    let startDate = allSortedEntries.indexOf(allSortedEntries.find(item => item.date === date));
+    let weekEntries = allSortedEntries.slice(startDate, (startDate + 7));
+    let weeklySleepQuality = weekEntries.map(entry => entry.sleepQuality)
+    return weeklySleepQuality;
+  }
 }
 
 if (typeof module !== 'undefined') {
