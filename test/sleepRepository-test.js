@@ -1,13 +1,16 @@
 const chai = require('chai');
 const expect = chai.expect;
-const User = require('../src/user');
+const data = require('../data/user-sample-data');
+const UserRepository = require('../src/userRepository');
 const SleepRepository = require('../src/sleepRepository');
 const sleepData = require('../data/sleep-sample-data');
 
+
 describe('Sleep Repository', function() {
-  let sleepRepository;
+  let sleepRepository, userRepository;
 
   beforeEach(function() {
+    userRepository = new UserRepository(data);
     sleepRepository = new SleepRepository(sleepData[0])
 
   });
@@ -55,8 +58,14 @@ describe('Sleep Repository', function() {
     expect(sleepRepository.getWeeklySleepHours(1, '2019/06/15')).to.deep.equal([6.1, 7, 10.8, 5.4, 4.1, 9.6, 5.1])
   })
 
-  it.only('should return the quality of sleep each day for the week for a user', function() {
+  it('should return the quality of sleep each day for the week for a user', function() {
     sleepRepository = new SleepRepository(sleepData)
     expect(sleepRepository.getWeeklySleepQuality(1, '2019/06/15')).to.deep.equal([2.2, 4.7, 4.7, 3, 3.6, 2.9, 2.6])
   })
+
+  it('should return the user who slept the most hours', function() {
+    sleepRepository = new SleepRepository(sleepData);
+    expect(sleepRepository.getMostHoursSlept('2019/06/15')).to.deep.equal(3)
+  })
+
 });
