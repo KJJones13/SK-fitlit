@@ -42,5 +42,5 @@ function displayTodaysOunces() {
 };
 
 function displayWeeklyOunces() {
-  hydrationInfo[1].innerText = `Weekly Ounces: ${hydrationRepository.weeklyOunces(user.id, hydration.date)}`
+  hydrationInfo[1].innerText = `Weekly Ounces: ${hydrationRepository.weeklyOunces(user.id, hydrationData.date)}`
 }
