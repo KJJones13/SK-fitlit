@@ -4,7 +4,7 @@ const User = require('../src/user');
 const SleepRepository = require('../src/sleepRepository');
 const sleepData = require('../data/sleep-sample-data');
 
-describe('Hydration Repository', function() {
+describe('Sleep Repository', function() {
   let user1, sleepRepository;
 
   beforeEach(function() {
@@ -27,5 +27,13 @@ describe('Hydration Repository', function() {
     expect(sleepRepository.date).to.equal('2019/06/15');
     expect(sleepRepository.hoursSlept).to.equal(6.1);
     expect(sleepRepository.sleepQuality).to.equal(2.2);
+  });
+
+  it('should return hours slept for a specific day', function() {
+    expect(sleepRepository.getSleepHoursDay(1, '2019/06/15')).to.equal(6.1)
+  });
+
+  it('should return sleep quality for a specific day', function() {
+    expect(sleepRepository.getSleepQualityDay(1, '2019/06/15')).to.equal(2.2)
   });
 });

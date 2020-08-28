@@ -24,8 +24,10 @@ class HydrationRepository {
     return parseFloat((totalOunces / userEntries.length).toFixed(0));
   }
 
-  calculateWeeklyOunces(userID, startDate) {
-
+  specificDayOunces(userID, date) {
+    let dayEntry = this.hydrationData.find(entry => entry.userID === userID && entry.date === date);
+    console.log(dayEntry.numOunces)
+    return dayEntry.numOunces;
   }
 }
 // find ounces for the startDate
