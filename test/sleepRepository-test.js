@@ -5,12 +5,9 @@ const SleepRepository = require('../src/sleepRepository');
 const sleepData = require('../data/sleep-sample-data');
 
 describe('Sleep Repository', function() {
-  let user1, sleepRepository;
+  let sleepRepository;
 
   beforeEach(function() {
-    let user1 = new User({
-      id: 1
-    });
     sleepRepository = new SleepRepository(sleepData[0])
   });
 
@@ -35,5 +32,10 @@ describe('Sleep Repository', function() {
 
   it('should return sleep quality for a specific day', function() {
     expect(sleepRepository.getSleepQualityDay(1, '2019/06/15')).to.equal(2.2)
+  });
+
+  it('should return the average hours slept for a user', function() {
+    sleepRepository = new SleepRepository(sleepData)
+    expect(sleepRepository.getAverageSleepHours(1)).to.equal(6.9)
   });
 });
