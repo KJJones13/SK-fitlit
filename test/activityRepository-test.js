@@ -30,4 +30,16 @@ describe.only('Activity Repository', function() {
   it('should check if the user has reached their step goal', function() {
     expect(activityRepository.checkStepGoal(1, '2019/06/15', user)).to.equal(false)
   });
+
+  it('should get the minutes active for a user', function() {
+    expect(activityRepository.getMinutesActive(1, '2019/06/15')).to.equal(140)
+  });
+
+  it('should get the average minutes active for a week for a user', function() {
+    expect(activityRepository.getMinutesActiveAverageWeek(1, '2019/06/15')).to.equal(159)
+  });
+
+  it('should get the all time stair record for a user', function() {
+    expect(activityRepository.getAllTimeStairRecord(1)).to.equal(33)
+  });
 });
