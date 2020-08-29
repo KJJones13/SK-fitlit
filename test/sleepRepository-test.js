@@ -6,7 +6,7 @@ const SleepRepository = require('../src/sleepRepository');
 const sleepData = require('../data/sleep-sample-data');
 
 
-describe.only('Sleep Repository', function() {
+describe('Sleep Repository', function() {
   let sleepRepository, userRepository;
 
   beforeEach(function() {
@@ -58,8 +58,8 @@ describe.only('Sleep Repository', function() {
     expect(sleepRepository.getWeeklySleepQuality(1, '2019/06/15')).to.deep.equal([2.2, 4.7, 4.7, 3, 3.6, 2.9, 2.6])
   })
 
-  it('should return the user who slept the most hours', function() {
-    expect(sleepRepository.getMostHoursSlept('2019/06/15')).to.equal(1)
+  it.only('should return the user who slept the most hours', function() {
+    expect(sleepRepository.getMostHoursSlept('2019/06/15')).to.deep.equal([1, 2])
   })
 
   it.only('should return users who average a sleep quality greater than 3 over the course of a week', function() {

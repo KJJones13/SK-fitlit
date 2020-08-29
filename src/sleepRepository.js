@@ -64,9 +64,12 @@ class SleepRepository {
 
   getMostHoursSlept(date) {
     let dateEntries = this.sleepData.filter(entry => entry.date === date);
-    let mostHoursSlept = (dateEntries.sort((a, b) => b.hoursSlept - a.hoursSlept))[0].userID;
-    return mostHoursSlept
+    let sleepHours = dateEntries.sort((a, b) => b.hoursSlept - a.hoursSlept);
+    let mostHoursSlept = sleepHours.filter(entry => entry.hoursSlept === sleepHours[0].hoursSlept)
+    let userMostSleep = mostHoursSlept.map(entry => entry.userID);
+    return userMostSleep
   }
+
 
   getQualitySleepUsers(date) {
     let allUserIDs = this.sleepData.map(entry => entry.userID);
@@ -97,11 +100,7 @@ class SleepRepository {
     return goodSleepers
   }
 }
+
 if (typeof module !== 'undefined') {
   module.exports = SleepRepository;
 }
-
-
-
-
-//Given a date, find the user(s) with the most hours slept. Pull all entries on the given date from the sleep data. Determine what the highest value is in sleep Hours.
