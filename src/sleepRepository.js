@@ -71,21 +71,21 @@ class SleepRepository {
     let startDate = this.sleepData.indexOf(this.sleepData.find(item => item.date === date));
     let weekEntries = this.sleepData.slice(startDate, (startDate + 7));
     console.log(weekEntries);
-    let highSleepQuality = weekEntries.filter(user => {
-      ((this.getWeeklySleepQuality(user) / 7));
-    });
-    console.log(highSleepQuality)
-    return highSleepQuality > 3
-
-
+    let weeklySleepQuality = weekEntries.map(entry => entry.sleepQuality)
+    console.log(weeklySleepQuality);
+    let totalSleepQuality = weeklySleepQuality.reduce((num, entry) => {
+      return num + entry;
+    }, 0)
+    console.log(totalSleepQuality)
+    let highSleepQuality = parseFloat(((totalSleepQuality / weeklySleepQuality.length)).toFixed(1));
+    return highSleepQuality
   }
-
-  //for each user find the average and if it's greater than 3, push it to th
 }
-
 if (typeof module !== 'undefined') {
   module.exports = SleepRepository;
 }
+
+
 
 
 //Given a date, find the user(s) with the most hours slept. Pull all entries on the given date from the sleep data. Determine what the highest value is in sleep Hours.
