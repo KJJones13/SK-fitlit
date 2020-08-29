@@ -64,31 +64,29 @@ class SleepRepository {
 
   getMostHoursSlept(date) {
     let dateEntries = this.sleepData.filter(entry => entry.date === date);
-    let mostHoursSlept = (dateEntries.sort((a, b) => b.hoursSlept - a.hoursSlept))[0].userID;
-    return mostHoursSlept
+    let sleepHours = dateEntries.sort((a, b) => b.hoursSlept - a.hoursSlept);
+    let mostHoursSlept = sleepHours.filter(entry => entry.hoursSlept === sleepHours[0].hoursSlept)
+    let userMostSleep = mostHoursSlept.map(entry => entry.userID);
+    return userMostSleep
   }
 
   getUsersAverageSleepQuality(date) {
-    let startDate = this.sleepData.indexOf(this.sleepData.filter(item => item.date === date));
-    console.log(startDate);
-    let weekEntries = this.sleepData.slice(startDate, (startDate + 7));
-    console.log(weekEntries);
+    let startDate = this.sleepData.filter(item => item.date === date);
+    //console.log(startDate);
+    let weekEntries = this.sleepData.slice(user => (startDate, (startDate + 7)));
+    //console.log(weekEntries);
     let weeklySleepQuality = weekEntries.map(entry => entry.sleepQuality)
-    console.log(weeklySleepQuality);
+    //console.log(weeklySleepQuality);
     let totalSleepQuality = weeklySleepQuality.reduce((num, entry) => {
       return num + entry;
     }, 0)
-    console.log(totalSleepQuality)
+    //console.log(totalSleepQuality)
     let highSleepQuality = parseFloat(((totalSleepQuality / weeklySleepQuality.length)).toFixed(1));
-    console.log(highSleepQuality)
+    //console.log(highSleepQuality)
     return highSleepQuality
   }
 }
+
 if (typeof module !== 'undefined') {
   module.exports = SleepRepository;
 }
-
-
-
-
-//Given a date, find the user(s) with the most hours slept. Pull all entries on the given date from the sleep data. Determine what the highest value is in sleep Hours.
