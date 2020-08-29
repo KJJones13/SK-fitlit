@@ -19,7 +19,8 @@ class SleepRepository {
   }
 
   getSleepQualityDay(userID, date) {
-    return this.sleepQuality;
+    let sleepQuality = this.sleepData.find(entry => entry.userID === userID && entry.date === date);
+    return sleepQuality.sleepQuality;
   }
 
   getAverageSleepHours(userID) {
@@ -68,7 +69,8 @@ class SleepRepository {
   }
 
   getUsersAverageSleepQuality(date) {
-    let startDate = this.sleepData.indexOf(this.sleepData.find(item => item.date === date));
+    let startDate = this.sleepData.indexOf(this.sleepData.filter(item => item.date === date));
+    console.log(startDate);
     let weekEntries = this.sleepData.slice(startDate, (startDate + 7));
     console.log(weekEntries);
     let weeklySleepQuality = weekEntries.map(entry => entry.sleepQuality)
@@ -78,6 +80,7 @@ class SleepRepository {
     }, 0)
     console.log(totalSleepQuality)
     let highSleepQuality = parseFloat(((totalSleepQuality / weeklySleepQuality.length)).toFixed(1));
+    console.log(highSleepQuality)
     return highSleepQuality
   }
 }
