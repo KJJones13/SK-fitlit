@@ -68,20 +68,33 @@ class SleepRepository {
     return mostHoursSlept
   }
 
-  getUsersAverageSleepQuality(date) {
-    let startDate = this.sleepData.indexOf(this.sleepData.filter(item => item.date === date));
-    console.log(startDate);
-    let weekEntries = this.sleepData.slice(startDate, (startDate + 7));
-    console.log(weekEntries);
-    let weeklySleepQuality = weekEntries.map(entry => entry.sleepQuality)
-    console.log(weeklySleepQuality);
-    let totalSleepQuality = weeklySleepQuality.reduce((num, entry) => {
-      return num + entry;
+  getQualitySleepUsers(date) {
+    let allUserIDs = this.sleepData.map(entry => entry.userID);
+    let uniqueUserIDs = allUserIDs.filter((id, index, arr) => arr.indexOf(id) === index);
+    let userWeeklyQuality = uniqueUserIDs.map(id => {
+      let retObj = {}
+      retObj[id] = this.getWeeklySleepQuality(id, date)
+      return retObj
+    })
+    console.log(userWeeklyQuality)
+    let weeklyAverageQuality = userWeeklyQuality.map(entry => {
+      let retObj = {}
+      let entryKey = Object.keys(entry)[0]
+      console.log(entryKey)
+      console.log(userWeeklyQuality[entryKey])
+      retObj[entryKey] = entry[entryKey].reduce((acc, cur) => {
+        return acc += cur
+      })
+      if(retObj[entryKey] / 7 > 3) {
+        return entryKey
+      }
     }, 0)
-    console.log(totalSleepQuality)
-    let highSleepQuality = parseFloat(((totalSleepQuality / weeklySleepQuality.length)).toFixed(1));
-    console.log(highSleepQuality)
-    return highSleepQuality
+    console.log(weeklyAverageQuality)
+    let goodSleepers = weeklyAverageQuality.filter(function(id) {
+      return id != null
+    })
+    console.log(goodSleepers)
+    return goodSleepers
   }
 }
 if (typeof module !== 'undefined') {
