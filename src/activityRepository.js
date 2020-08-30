@@ -34,6 +34,40 @@ class ActivityRepository {
     let sortedStairInfo = allStairsInfo.sort((a, b) => b - a);
     return sortedStairInfo[0];
   }
+
+  getStepGoalWinDays(userID, user) {
+    let userEntries = this.activityData.filter(user => user.userID === userID);
+    let stepGoalMetEntries = userEntries.filter(entry => entry.numSteps > user.dailyStepGoal);
+    let days = stepGoalMetEntries.map(entry => entry.date)
+    return days;
+  }
+
+  getAllUserAverageStairs(date) {
+    let userEntries = this.activityData.filter(user => user.date === date);
+    let allStairsClimbed = userEntries.map(stair => stair.flightsOfStairs);
+    let allStairTotal = allStairsClimbed.reduce((stairs, entry) => {
+      return stairs += entry;
+    }, 0)
+    return parseFloat(((allStairTotal / allStairsClimbed.length)).toFixed(0))
+  }
+
+  getAllUsersAverageSteps(date) {
+    let userEntries = this.activityData.filter(user => user.date === date);
+    let allStepsTaken = userEntries.map(step => step.numSteps);
+    let allStepTotal = allStepsTaken.reduce((steps, entry) => {
+      return steps += entry;
+    }, 0)
+    return parseFloat(((allStepTotal / allStepsTaken.length)).toFixed(0))
+  }
+
+  getAllUsersAverageMinActive(date) {
+    let userEntries = this.activityData.filter(user => user.date === date);
+    let allMinActive = userEntries.map(min => min.minutesActive);
+    let allMinTotal = allMinActive.reduce((minutes, entry) => {
+      return minutes += entry;
+    }, 0)
+    return parseFloat(((allMinTotal / allMinActive.length)).toFixed(0))
+  }
 }
 
 if (typeof module !== 'undefined') {
