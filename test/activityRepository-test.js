@@ -46,4 +46,16 @@ describe.only('Activity Repository', function() {
   it('should get all the days a user has exceeded their step goal', function() {
     expect(activityRepository.getStepGoalWinDays(1, user)).to.deep.equal(['2019/06/19', '2019/06/20'])
   })
+
+  it('should get average for all users stair climbed on a specific day', function() {
+    expect(activityRepository.getAllUserAverageStairs('2019/06/15')).to.equal(16)
+  })
+
+  it('should get average steps for all users on a specific day', function() {
+    expect(activityRepository.getAllUsersAverageSteps('2019/06/15')).to.equal(3577)
+  })
+
+  it('should get average minutes active for all users on a specific day', function() {
+    expect(activityRepository.getAllUsersAverageMinActive('2019/06/15')).to.equal(140)
+  })
 });
