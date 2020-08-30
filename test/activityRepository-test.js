@@ -42,4 +42,8 @@ describe.only('Activity Repository', function() {
   it('should get the all time stair record for a user', function() {
     expect(activityRepository.getAllTimeStairRecord(1)).to.equal(33)
   });
+
+  it('should get all the days a user has exceeded their step goal', function() {
+    expect(activityRepository.getStepGoalWinDays(1, user)).to.deep.equal(['2019/06/19', '2019/06/20'])
+  })
 });
