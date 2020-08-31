@@ -1,6 +1,7 @@
 class ActivityRepository {
-  constructor(activityData) {
+  constructor(activityData, data) {
     this.activityData = activityData;
+    this.data = data;
   }
 
   calculateMilesWalked(userID, date, user) {
@@ -88,7 +89,46 @@ class ActivityRepository {
     }, 0)
     return parseFloat(((allMinTotal / allMinActive.length)).toFixed(0))
   }
+
+  getStepChallengeTotal(userID, date) {
+    let startDate = this.activityData.indexOf(this.activityData.find(item => item.userID === userID && item.date === date));
+    let userEntries = this.activityData.slice(startDate, (startDate + 7));
+    let weeklyStepCounts = userEntries.map(step => step.numSteps);
+    let weeklyStepTotal = weeklyStepCounts.reduce((steps, entry) => {
+      return steps += entry;
+    }, 0);
+    return weeklyStepTotal;
+  }
+
+  // getStepChallengers(id, friends) {
+  //   console.log(userRepository.getNameByID(id));
+  //   let userEntry = this.data.find(entry => entry.id === id);
+  //   let friends = userEntry.friends;
+  //   // let friendsNames =
+  // }
+  getStepChallengeResults(id, userID, date) {
+    let userEntry = this.data.find(entry => entry.id === id);
+    let friends = userEntry.friends;
+    let userSteps = this.getStepChallengeTotal(userID, date);
+    console.log(userSteps);
+    let friendsSteps = friends.map(friend => friend.getStepChallengeTotal())
+    //console.log(friendsSteps)
+    // let userEntry = this.data.find(entry => entry.id === id);
+    // // console.log(userEntry.friends)
+    // let friends = userEntry.friends;
+    // console.log(stepChallengeResults)
+    // return friends.map(friend => {
+    //   let stepChallegeResults = {};
+    //   stepChallengeResults[friends] = {}
+    //   return stepChallengeResults
+    // })
+
+
+  }
 }
+
+
+  //Choose a user. Assign user friends. Run getStepChallengeTotal on each person. Find friends names. Put friends names and step total into new array of objects. Sort objects based on descending order of step counts.
 
 if (typeof module !== 'undefined') {
   module.exports = ActivityRepository;
