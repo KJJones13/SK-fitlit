@@ -28,6 +28,26 @@ class ActivityRepository {
     return parseFloat((averageMinActive / weeklyMinutesActive.length).toFixed(0));
   }
 
+  getFlightsOfStairsAverageWeek(userID, date) {
+    let startDate = this.activityData.indexOf(this.activityData.find(item => item.userID === userID && item.date === date));
+    let weekEntries = this.activityData.slice(startDate, (startDate + 7));
+    let weeklyFlightsOfStairs = weekEntries.map(entry => entry.flightsOfStairs);
+    let averageFlightsOfStairs = weeklyFlightsOfStairs.reduce((min, entry) => {
+      return min += entry;
+    }, 0)
+    return parseFloat((averageFlightsOfStairs / weeklyFlightsOfStairs.length).toFixed(0));
+  }
+
+  getStepCountAverageWeek(userID, date) {
+    let startDate = this.activityData.indexOf(this.activityData.find(item => item.userID === userID && item.date === date));
+    let weekEntries = this.activityData.slice(startDate, (startDate + 7));
+    let weeklyStepCount = weekEntries.map(entry => entry.numSteps);
+    let averageStepCount = weeklyStepCount.reduce((min, entry) => {
+      return min += entry;
+    }, 0)
+    return parseFloat((averageStepCount / weeklyStepCount.length).toFixed(0));
+  }
+
   getAllTimeStairRecord(userID) {
     let userEntries = this.activityData.filter(user => user.userID === userID);
     let allStairsInfo = userEntries.map(entry => entry.flightsOfStairs);

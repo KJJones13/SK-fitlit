@@ -39,6 +39,14 @@ describe.only('Activity Repository', function() {
     expect(activityRepository.getMinutesActiveAverageWeek(1, '2019/06/15')).to.equal(159)
   });
 
+  it('should get the average flights of stairs climbed for a week for a user', function() {
+    expect(activityRepository.getFlightsOfStairsAverageWeek(1, '2019/06/15')).to.equal(18)
+  });
+
+  it('should get the average num steps for a week for a user', function() {
+    expect(activityRepository.getStepCountAverageWeek(1, '2019/06/15')).to.equal(6797)
+  });
+
   it('should get the all time stair record for a user', function() {
     expect(activityRepository.getAllTimeStairRecord(1)).to.equal(33)
   });
