@@ -49,8 +49,9 @@ function displayHydrationInfo() {
 };
 
 function displaySleepInfo() {
-  sleepInfo[1].innerText = `Today's Hours Slept: ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')}`;
-  sleepInfo[2].innerText = `Weekly Hours Slept: ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')}`;
+  sleepInfo[1].innerText = `Today's Sleep Info: ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')} Hours - ${sleepRepository.getSleepQualityDay(user.id, '2019/06/19')} Sleep Quality`;
+  sleepInfo[2].innerText = `Weekly Sleep Info: ${sleepRepository.getWeeklySleepHours(user.id, '2019/06/19')} Hours - ${sleepRepository.getWeeklySleepQuality(user.id, '2019/06/19')} Sleep Quality`;
+  sleepInfo[3].innerText = `Average Sleep Info: ${sleepRepository.getAverageSleepHours(user.id)} Hours - ${sleepRepository.getAverageSleepQuality(user.id)} Sleep Quality`;
 };
 
 function displayActivityInfo() {
