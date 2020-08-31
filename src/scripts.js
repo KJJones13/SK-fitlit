@@ -1,23 +1,26 @@
-
 const userGreeting = document.querySelector('#user-name');
 const userInfo = document.querySelectorAll('.user-info-text');
 const hydrationInfo = document.querySelectorAll('.hydration-info');
 const sleepInfo = document.querySelectorAll('.sleep-info');
+const activityInfo = document.querySelectorAll('.activity-info');
 
 const user = new User(userData[10]);
 const userRepository = new UserRepository(userData);
 const hydrationRepository = new HydrationRepository(hydrationData);
 const hydration = new Hydration(hydrationData);
 const sleepRepository = new SleepRepository(sleepData);
+const activityRepository = new ActivityRepository(activityData);
 
 window.addEventListener('load', loadHandler);
 
 function loadHandler() {
   greeting();
   displayInfoCard();
-  displayTodaysOunces();
-  displayWeeklyOunces();
-  displayTodaysSleepHours();
+  displayHydrationInfo();
+  displaySleepInfo();
+  displayActivityInfo();
+  displayStepsForDay();
+  displayStairsClimbedForDay();
 };
 
 function greeting() {
@@ -34,20 +37,38 @@ function displayInfoCard() {
 };
 
 function getFriendsNames(data) {
-    return user.friends.map(friend => {
-      const friendMatch = userRepository.data.find(user => user.id === friend);
-      return friendMatch.name;
-    });
+  return user.friends.map(friend => {
+    const friendMatch = userRepository.data.find(user => user.id === friend);
+    return friendMatch.name;
+  });
 };
 
-function displayTodaysOunces() {
+function displayHydrationInfo() {
   hydrationInfo[0].innerText = `Today's Ounces: ${hydrationRepository.specificDayOunces(user.id, '2019/06/19')}`;
+  hydrationInfo[1].innerText = `Weekly Ounces: ${hydrationRepository.weeklyOunces(user.id, '2019/06/19')}`;
 };
 
-function displayWeeklyOunces() {
-  hydrationInfo[1].innerText = `Weekly Ounces: ${hydrationRepository.weeklyOunces(user.id, hydrationData.date)}`
+function displaySleepInfo() {
+  sleepInfo[1].innerText = `Today's Hours Slept: ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')}`;
+  sleepInfo[2].innerText = `Weekly Hours Slept: ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')}`;
 };
 
-function displayTodaysSleepHours() {
-  sleepInfo[1].innerText = `Today's Hours Slept: ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')}`
+function displayActivityInfo() {
+  activityInfo[0].innerText = `Today's Steps: ${displayStepsForDay(user.id, '2019/06/19')}`;
+  activityInfo[1].innerText = `Today's Minutes Active: ${activityRepository.getMinutesActive(user.id, '2019/06/19')}`;
+  activityInfo[2].innerText = `Today's Miles Walked: ${activityRepository.calculateMilesWalked(user.id, '2019/06/19', user)}`;
+  activityInfo[3].innerText = `Your Step Info: ${displayStepsForDay(user.id, '2019/06/19')} - Average Step Info: ${activityRepository.getAllUsersAverageSteps('2019/06/19')}`;
+  activityInfo[4].innerText = `Your Minutes Active: ${activityRepository.getMinutesActive(user.id, '2019/06/19')} - Average Minutes Active: ${activityRepository.getAllUsersAverageMinActive('2019/06/19')}`;
+  activityInfo[5].innerText = `Your Stairs Climbed: ${displayStairsClimbedForDay(user.id, '2019/06/19')} - Average Stairs Climbed: ${activityRepository.getAllUserAverageStairs('2019/06/19')}`;
+  activityInfo[6].innerText = `Your Weekly Averages: ${activityRepository.getMinutesActiveAverageWeek(user.id, '2019/06/19')} - ${activityRepository.getFlightsOfStairsAverageWeek(user.id, '2019/06/19')} - ${activityRepository.getStepCountAverageWeek(user.id, '2019/06/19')}`;
+};
+
+function displayStepsForDay(userID, date) {
+  let userEntry = activityData.find(entry => entry.userID === userID && entry.date === date);
+  return userEntry.numSteps;
+};
+
+function displayStairsClimbedForDay(userID, date) {
+  let userEntry = activityData.find(entry => entry.userID === userID && entry.date === date);
+  return userEntry.flightsOfStairs;
 };
