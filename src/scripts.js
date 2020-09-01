@@ -9,7 +9,7 @@ const userRepository = new UserRepository(userData);
 const hydrationRepository = new HydrationRepository(hydrationData);
 const hydration = new Hydration(hydrationData);
 const sleepRepository = new SleepRepository(sleepData);
-const activityRepository = new ActivityRepository(activityData);
+const activityRepository = new ActivityRepository(activityData, userData);
 
 window.addEventListener('load', loadHandler);
 
@@ -19,8 +19,8 @@ function loadHandler() {
   displayHydrationInfo();
   displaySleepInfo();
   displayActivityInfo();
-  displayStepsForDay();
-  displayStairsClimbedForDay();
+  displayStepsForDay(user.id, '2019/06/19');
+  displayStairsClimbedForDay(user.id, '2019/06/19');
 };
 
 function greeting() {
@@ -65,6 +65,7 @@ function displayActivityInfo() {
   activityInfo[4].innerText = `Your Minutes Active: ${activityRepository.getMinutesActive(user.id, '2019/06/19')} - Average Minutes Active: ${activityRepository.getAllUsersAverageMinActive('2019/06/19')}`;
   activityInfo[5].innerText = `Your Stairs Climbed: ${displayStairsClimbedForDay(user.id, '2019/06/19')} - Average Stairs Climbed: ${activityRepository.getAllUserAverageStairs('2019/06/19')}`;
   activityInfo[6].innerText = `Steps: ${activityRepository.getStepCountAverageWeek(user.id, '2019/06/19')} - Minutes Active: ${activityRepository.getMinutesActiveAverageWeek(user.id, '2019/06/19')} - Stairs Climbed: ${activityRepository.getFlightsOfStairsAverageWeek(user.id, '2019/06/19')}`;
+  activityInfo[9].innerText = `${activityRepository.getStepChallengeResults(user.id, '2019/06/19')}`;
 };
 
 function displayStepsForDay(userID, date) {
