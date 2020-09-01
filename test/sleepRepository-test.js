@@ -6,23 +6,23 @@ const SleepRepository = require('../src/sleepRepository');
 const sleepData = require('../data/sleep-sample-data');
 
 
-describe.only('Sleep Repository', function() {
+describe.only('Sleep Repository', () => {
   let sleepRepository, userRepository;
 
-  beforeEach(function() {
+  beforeEach(() => {
     userRepository = new UserRepository(data);
     sleepRepository = new SleepRepository(sleepData);
   });
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     expect(SleepRepository).to.be.a('function');
   });
 
-  it('should be an instance of SleepRepository', function() {
+  it('should be an instance of SleepRepository', () => {
     expect(sleepRepository).to.be.an.instanceof(SleepRepository);
   });
 
-  it('should return sorted user data', function() {
+  it('should return sorted user data', () => {
     expect(sleepRepository.sortDates(1)).to.deep.equal([{
       "userID": 1,
       "date": "2019/06/15",
@@ -67,7 +67,7 @@ describe.only('Sleep Repository', function() {
     }]);
   });
 
-  it('should return user data for a given week', function() {
+  it('should return user data for a given week', () => {
     expect(sleepRepository.getWeeklyEntries(1,'2019/06/15')).to.deep.equal([{
       "userID": 1,
       "date": "2019/06/15",
@@ -112,39 +112,39 @@ describe.only('Sleep Repository', function() {
     }]);
   });
 
-  it('should return hours slept for a specific day', function() {
+  it('should return hours slept for a specific day', () => {
     expect(sleepRepository.getSleepHoursDay(1, '2019/06/15')).to.equal(6.1);
   });
 
-  it('should return sleep quality for a specific day', function() {
+  it('should return sleep quality for a specific day', () => {
     expect(sleepRepository.getSleepQualityDay(1, '2019/06/15')).to.equal(2.2);
   });
 
-  it('should return the average hours slept for a user', function() {
+  it('should return the average hours slept for a user', () => {
     expect(sleepRepository.getAverageSleepHours(1)).to.equal(6.9);
   });
 
-  it('should return the average sleep quality for a user', function() {
+  it('should return the average sleep quality for a user', () => {
     expect(sleepRepository.getAverageSleepQuality(1)).to.equal(3.4);
   });
 
-  it('should return the average sleep quality for all user', function() {
+  it('should return the average sleep quality for all user', () => {
     expect(sleepRepository.getAllAverageSleepQuality()).to.equal(3.3);
   });
 
-  it('should return the hours slept each day for the week for a user', function() {
+  it('should return the hours slept each day for the week for a user', () => {
     expect(sleepRepository.getWeeklySleepHours(1, '2019/06/15')).to.equal('6.1, 7, 10.8, 5.4, 4.1, 9.6, 5.1');
   });
 
-  it('should return the quality of sleep each day for the week for a user', function() {
+  it('should return the quality of sleep each day for the week for a user', () => {
     expect(sleepRepository.getWeeklySleepQuality(1, '2019/06/15')).to.equal('2.2, 4.7, 4.7, 3, 3.6, 2.9, 2.6');
   });
 
-  it('should return the user who slept the most hours', function() {
+  it('should return the user who slept the most hours', () => {
     expect(sleepRepository.getMostHoursSlept('2019/06/15')).to.deep.equal([1, 2]);
   });
 
-  it('should return users who average a sleep quality greater than 3 over the course of a week', function() {
+  it('should return users who average a sleep quality greater than 3 over the course of a week', () => {
     expect(sleepRepository.getQualitySleepUsers('2019/06/15')).to.deep.equal(['1','2','3']);
   });
 });
