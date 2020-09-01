@@ -5,8 +5,8 @@ class ActivityRepository {
   }
 
   getDayEntry(userID, date) {
-    let dayEntry = this.activityData.find(entry => entry.userID === userID && entry.date === date)
-    return dayEntry
+    let dayEntry = this.activityData.find(entry => entry.userID === userID && entry.date === date);
+    return dayEntry;
   }
 
   getWeekEntries(userID, date) {
@@ -31,7 +31,7 @@ class ActivityRepository {
   }
 
   getMinutesActiveAverageWeek(userID, date) {
-    let weekEntries = this.getWeekEntries(userID, date)
+    let weekEntries = this.getWeekEntries(userID, date);
     let weeklyMinutesActive = weekEntries.map(entry => entry.minutesActive);
     let averageMinActive = weeklyMinutesActive.reduce((min, entry) => {
       return min += entry;
@@ -49,7 +49,7 @@ class ActivityRepository {
   }
 
   getStepCountAverageWeek(userID, date) {
-    let weekEntries = this.getWeekEntries(userID, date)
+    let weekEntries = this.getWeekEntries(userID, date);
     let weeklyStepCount = weekEntries.map(entry => entry.numSteps);
     let averageStepCount = weeklyStepCount.reduce((min, entry) => {
       return min += entry;
@@ -67,7 +67,7 @@ class ActivityRepository {
   getStepGoalWinDays(userID, user) {
     let userEntries = this.activityData.filter(user => user.userID === userID);
     let stepGoalMetEntries = userEntries.filter(entry => entry.numSteps > user.dailyStepGoal);
-    let days = stepGoalMetEntries.map(entry => entry.date)
+    let days = stepGoalMetEntries.map(entry => entry.date);
     return days;
   }
 
@@ -76,8 +76,8 @@ class ActivityRepository {
     let allStairsClimbed = userEntries.map(stair => stair.flightsOfStairs);
     let allStairTotal = allStairsClimbed.reduce((stairs, entry) => {
       return stairs += entry;
-    }, 0)
-    return parseFloat(((allStairTotal / allStairsClimbed.length)).toFixed(0))
+    }, 0);
+    return parseFloat(((allStairTotal / allStairsClimbed.length)).toFixed(0));
   }
 
   getAllUsersAverageSteps(date) {
@@ -86,7 +86,7 @@ class ActivityRepository {
     let allStepTotal = allStepsTaken.reduce((steps, entry) => {
       return steps += entry;
     }, 0)
-    return parseFloat(((allStepTotal / allStepsTaken.length)).toFixed(0))
+    return parseFloat(((allStepTotal / allStepsTaken.length)).toFixed(0));
   }
 
   getAllUsersAverageMinActive(date) {
@@ -94,8 +94,8 @@ class ActivityRepository {
     let allMinActive = userEntries.map(min => min.minutesActive);
     let allMinTotal = allMinActive.reduce((minutes, entry) => {
       return minutes += entry;
-    }, 0)
-    return parseFloat(((allMinTotal / allMinActive.length)).toFixed(0))
+    }, 0);
+    return parseFloat(((allMinTotal / allMinActive.length)).toFixed(0));
   }
 
   getStepChallengeTotal(userID, date) {
