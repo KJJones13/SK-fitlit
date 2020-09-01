@@ -9,6 +9,12 @@ class ActivityRepository {
     return dayEntry
   }
 
+  getWeekEntries(userID, date) {
+    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
+    let weekEntries = this.activityData.slice(startDate, (startDate + 7));
+    return weekEntries;
+  }
+
   calculateMilesWalked(userID, date, user) {
     let dayEntry = this.getDayEntry(userID, date);
     return parseFloat(((dayEntry.numSteps * user.strideLength) / 5280).toFixed(2));
@@ -25,8 +31,7 @@ class ActivityRepository {
   }
 
   getMinutesActiveAverageWeek(userID, date) {
-    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
-    let weekEntries = this.activityData.slice(startDate, (startDate + 7));
+    let weekEntries = this.getWeekEntries(userID, date)
     let weeklyMinutesActive = weekEntries.map(entry => entry.minutesActive);
     let averageMinActive = weeklyMinutesActive.reduce((min, entry) => {
       return min += entry;
