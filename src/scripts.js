@@ -24,7 +24,7 @@ function loadHandler() {
 };
 
 function greeting() {
-  userGreeting.innerText = `Welcome ${user.getFirstName()}`;
+  userGreeting.innerText = `Welcome, ${user.getFirstName()}!`;
 };
 
 function displayInfoCard() {
@@ -33,7 +33,8 @@ function displayInfoCard() {
   userInfo[2].innerText = `Stride Length: ${user.strideLength}`;
   userInfo[3].innerText = `Daily Step Goal: ${user.dailyStepGoal}`;
   userInfo[4].innerText = `Average Step Goal: ${userRepository.calculateAverageStepGoal()}`;
-  userInfo[5].innerText = `Friends: ${getFriendsNames()}`;
+  userInfo[5].innerText = `Friends:
+  ${getFriendsNames()}`;
 };
 
 function getFriendsNames(data) {
@@ -44,24 +45,26 @@ function getFriendsNames(data) {
 };
 
 function displayHydrationInfo() {
-  hydrationInfo[0].innerText = `Today's Ounces: ${hydrationRepository.specificDayOunces(user.id, '2019/06/19')}`;
-  hydrationInfo[1].innerText = `Weekly Ounces: ${hydrationRepository.weeklyOunces(user.id, '2019/06/19')}`;
+  hydrationInfo[0].innerText = ` ${hydrationRepository.specificDayOunces(user.id, '2019/06/19')} oz`;
+  let weekOunces = hydrationRepository.weeklyOunces(user.id, '2019/06/19')
+  hydrationInfo[1].innerText = `${hydrationRepository.weeklyOunces(user.id, '2019/06/19')}oz`;
 };
 
 function displaySleepInfo() {
-  sleepInfo[1].innerText = `Today's Sleep Info: ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')} Hours - ${sleepRepository.getSleepQualityDay(user.id, '2019/06/19')} Sleep Quality`;
-  sleepInfo[2].innerText = `Weekly Sleep Info: ${sleepRepository.getWeeklySleepHours(user.id, '2019/06/19')} Hours - ${sleepRepository.getWeeklySleepQuality(user.id, '2019/06/19')} Sleep Quality`;
-  sleepInfo[3].innerText = `Average Sleep Info: ${sleepRepository.getAverageSleepHours(user.id)} Hours - ${sleepRepository.getAverageSleepQuality(user.id)} Sleep Quality`;
+  sleepInfo[0].innerText = ` ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')} Hours - ${sleepRepository.getSleepQualityDay(user.id, '2019/06/19')} Sleep Quality`;
+  sleepInfo[1].innerText = ` ${sleepRepository.getWeeklySleepHours(user.id, '2019/06/19')} Hours -
+  ${sleepRepository.getWeeklySleepQuality(user.id, '2019/06/19')} Sleep Quality`;
+  sleepInfo[2].innerText = ` ${sleepRepository.getAverageSleepHours(user.id)} Hours - ${sleepRepository.getAverageSleepQuality(user.id)} Sleep Quality`;
 };
 
 function displayActivityInfo() {
-  activityInfo[0].innerText = `Today's Steps: ${displayStepsForDay(user.id, '2019/06/19')}`;
-  activityInfo[1].innerText = `Today's Minutes Active: ${activityRepository.getMinutesActive(user.id, '2019/06/19')}`;
-  activityInfo[2].innerText = `Today's Miles Walked: ${activityRepository.calculateMilesWalked(user.id, '2019/06/19', user)}`;
-  activityInfo[3].innerText = `Your Step Info: ${displayStepsForDay(user.id, '2019/06/19')} - Average Step Info: ${activityRepository.getAllUsersAverageSteps('2019/06/19')}`;
+  activityInfo[0].innerText = `Steps: ${displayStepsForDay(user.id, '2019/06/19')}`;
+  activityInfo[1].innerText = `Minutes Active: ${activityRepository.getMinutesActive(user.id, '2019/06/19')}`;
+  activityInfo[2].innerText = `Miles Walked: ${activityRepository.calculateMilesWalked(user.id, '2019/06/19', user)}`;
+  activityInfo[3].innerText = `Your Steps: ${displayStepsForDay(user.id, '2019/06/19')} - Average Steps: ${activityRepository.getAllUsersAverageSteps('2019/06/19')}`;
   activityInfo[4].innerText = `Your Minutes Active: ${activityRepository.getMinutesActive(user.id, '2019/06/19')} - Average Minutes Active: ${activityRepository.getAllUsersAverageMinActive('2019/06/19')}`;
   activityInfo[5].innerText = `Your Stairs Climbed: ${displayStairsClimbedForDay(user.id, '2019/06/19')} - Average Stairs Climbed: ${activityRepository.getAllUserAverageStairs('2019/06/19')}`;
-  activityInfo[6].innerText = `Your Weekly Averages: ${activityRepository.getMinutesActiveAverageWeek(user.id, '2019/06/19')} - ${activityRepository.getFlightsOfStairsAverageWeek(user.id, '2019/06/19')} - ${activityRepository.getStepCountAverageWeek(user.id, '2019/06/19')}`;
+  activityInfo[6].innerText = `Steps: ${activityRepository.getStepCountAverageWeek(user.id, '2019/06/19')} - Minutes Active: ${activityRepository.getMinutesActiveAverageWeek(user.id, '2019/06/19')} - Stairs Climbed: ${activityRepository.getFlightsOfStairsAverageWeek(user.id, '2019/06/19')}`;
 };
 
 function displayStepsForDay(userID, date) {
