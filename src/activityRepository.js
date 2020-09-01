@@ -40,8 +40,7 @@ class ActivityRepository {
   }
 
   getFlightsOfStairsAverageWeek(userID, date) {
-    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
-    let weekEntries = this.activityData.slice(startDate, (startDate + 7));
+    let weekEntries = this.getWeekEntries(userID, date);
     let weeklyFlightsOfStairs = weekEntries.map(entry => entry.flightsOfStairs);
     let averageFlightsOfStairs = weeklyFlightsOfStairs.reduce((min, entry) => {
       return min += entry;
@@ -50,8 +49,7 @@ class ActivityRepository {
   }
 
   getStepCountAverageWeek(userID, date) {
-    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
-    let weekEntries = this.activityData.slice(startDate, (startDate + 7));
+    let weekEntries = this.getWeekEntries(userID, date)
     let weeklyStepCount = weekEntries.map(entry => entry.numSteps);
     let averageStepCount = weeklyStepCount.reduce((min, entry) => {
       return min += entry;
