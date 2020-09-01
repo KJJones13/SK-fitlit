@@ -4,14 +4,21 @@ class ActivityRepository {
     this.data = data;
   }
 
+  sortDates(userID) {
+    let userEntries = this.activityData.filter(user => user.userID === userID);
+    let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date));
+    return dateSort;
+  };
+
   getDayEntry(userID, date) {
     let dayEntry = this.activityData.find(entry => entry.userID === userID && entry.date === date);
     return dayEntry;
   }
 
   getWeekEntries(userID, date) {
-    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
-    let weekEntries = this.activityData.slice(startDate, (startDate + 7));
+    let allSortedEntries = this.sortDates(userID);
+    let startDate = allSortedEntries.indexOf(allSortedEntries.find(entry => entry.date === date));
+    let weekEntries = allSortedEntries.slice(startDate, (startDate + 7));
     return weekEntries;
   }
 
