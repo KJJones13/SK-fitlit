@@ -1,27 +1,23 @@
 class SleepRepository {
   constructor(sleepData) {
     this.sleepData = sleepData;
-    // this.userID = sleepData.userID;
-    // this.date = sleepData.date;
-    // this.hoursSlept = sleepData.hoursSlept;
-    // this.sleepQuality = sleepData.sleepQuality;
-  }
+  };
 
   sortDates(userID) {
     let userEntries = this.sleepData.filter(user => user.userID === userID);
     let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date));
     return dateSort;
-  }
+  };
 
   getSleepHoursDay(userID, date) {
     let sleepHours = this.sleepData.find(entry => entry.userID === userID && entry.date === date);
     return sleepHours.hoursSlept;
-  }
+  };
 
   getSleepQualityDay(userID, date) {
     let sleepQuality = this.sleepData.find(entry => entry.userID === userID && entry.date === date);
     return sleepQuality.sleepQuality;
-  }
+  };
 
   getAverageSleepHours(userID) {
     let userEntries = this.sleepData.filter(user => user.userID === userID);
