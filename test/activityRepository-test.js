@@ -11,8 +11,8 @@ describe.only('Activity Repository', function() {
 
   beforeEach(function() {
     userRepository = new UserRepository(data);
-    activityRepository = new ActivityRepository(activityData, data)
-    user = new User(data[0])
+    activityRepository = new ActivityRepository(activityData, data);
+    user = new User(data[0]);
   });
 
   it('should be a function', function() {
@@ -38,8 +38,8 @@ describe.only('Activity Repository', function() {
       "numSteps": 3577,
       "minutesActive": 140,
       "flightsOfStairs": 16
-    })
-  })
+    });
+  });
 
   it('should return the activity data for a given user over a week', function() {
     expect(activityRepository.getWeekEntries(1, '2019/06/15')).to.deep.equal([{
@@ -90,60 +90,60 @@ describe.only('Activity Repository', function() {
       "numSteps": 2634,
       "minutesActive": 107,
       "flightsOfStairs": 5
-    }])
-  })
+    }]);
+  });
 
   it('should calculate how many miles a user has walked that day', function() {
-    expect(activityRepository.calculateMilesWalked(1, '2019/06/15', user)).to.equal(2.91)
+    expect(activityRepository.calculateMilesWalked(1, '2019/06/15', user)).to.equal(2.91);
   });
 
   it('should check if the user has reached their step goal', function() {
-    expect(activityRepository.checkStepGoal(1, '2019/06/15', user)).to.equal(false)
+    expect(activityRepository.checkStepGoal(1, '2019/06/15', user)).to.equal(false);
   });
 
   it('should get the minutes active for a user', function() {
-    expect(activityRepository.getMinutesActive(1, '2019/06/15')).to.equal(140)
+    expect(activityRepository.getMinutesActive(1, '2019/06/15')).to.equal(140);
   });
 
   it('should get the average minutes active for a week for a user', function() {
-    expect(activityRepository.getMinutesActiveAverageWeek(1, '2019/06/15')).to.equal(159)
+    expect(activityRepository.getMinutesActiveAverageWeek(1, '2019/06/15')).to.equal(159);
   });
 
   it('should get the average flights of stairs climbed for a week for a user', function() {
-    expect(activityRepository.getFlightsOfStairsAverageWeek(1, '2019/06/15')).to.equal(18)
+    expect(activityRepository.getFlightsOfStairsAverageWeek(1, '2019/06/15')).to.equal(18);
   });
 
   it('should get the average num steps for a week for a user', function() {
-    expect(activityRepository.getStepCountAverageWeek(1, '2019/06/15')).to.equal(6797)
+    expect(activityRepository.getStepCountAverageWeek(1, '2019/06/15')).to.equal(6797);
   });
 
   it('should get the all time stair record for a user', function() {
-    expect(activityRepository.getAllTimeStairRecord(1)).to.equal(33)
+    expect(activityRepository.getAllTimeStairRecord(1)).to.equal(33);
   });
 
   it('should get all the days a user has exceeded their step goal', function() {
-    expect(activityRepository.getStepGoalWinDays(1, user)).to.deep.equal(['2019/06/19', '2019/06/20'])
-  })
+    expect(activityRepository.getStepGoalWinDays(1, user)).to.deep.equal(['2019/06/19', '2019/06/20']);
+  });
 
   it('should get average for all users stair climbed on a specific day', function() {
-    expect(activityRepository.getAllUserAverageStairs('2019/06/15')).to.equal(16)
-  })
+    expect(activityRepository.getAllUserAverageStairs('2019/06/15')).to.equal(16);
+  });
 
   it('should get average steps for all users on a specific day', function() {
-    expect(activityRepository.getAllUsersAverageSteps('2019/06/15')).to.equal(3577)
-  })
+    expect(activityRepository.getAllUsersAverageSteps('2019/06/15')).to.equal(3577);
+  });
 
   it('should get average minutes active for all users on a specific day', function() {
-    expect(activityRepository.getAllUsersAverageMinActive('2019/06/15')).to.equal(140)
-  })
+    expect(activityRepository.getAllUsersAverageMinActive('2019/06/15')).to.equal(140);
+  });
 
   it('should total the number of steps for a week for each challenge member', function() {
     expect(activityRepository.getStepChallengeTotal(1, '2019/06/15')).to.equal(47577);
     expect(activityRepository.getStepChallengeTotal(2, '2019/06/15')).to.equal(47590);
-    expect(activityRepository.getStepChallengeTotal(3, '2019/06/15')).to.equal(47619)
-  })
+    expect(activityRepository.getStepChallengeTotal(3, '2019/06/15')).to.equal(47619);
+  });
 
   it('should return an array of step challenge members ranked by most steps', function() {
-    expect(activityRepository.getStepChallengeResults(1)).to.deep.equal([{'name': 'Luisa', 'numSteps': 47577}, {'name':'Jarvis', 'numSteps': 47590}, {'name': 'Herminia', 'numSteps':47619}])
-  })
+    expect(activityRepository.getStepChallengeResults(1)).to.deep.equal([{'name': 'Luisa', 'numSteps': 47577}, {'name':'Jarvis', 'numSteps': 47590}, {'name': 'Herminia', 'numSteps':47619}]);
+  });
 });
