@@ -65,14 +65,14 @@ class ActivityRepository {
   }
 
   getAllTimeStairRecord(userID) {
-    let userEntries = this.activityData.filter(user => user.userID === userID);
+    let userEntries = this.sortDates(userID);
     let allStairsInfo = userEntries.map(entry => entry.flightsOfStairs);
     let sortedStairInfo = allStairsInfo.sort((a, b) => b - a);
     return sortedStairInfo[0];
   }
 
   getStepGoalWinDays(userID, user) {
-    let userEntries = this.activityData.filter(user => user.userID === userID);
+    let userEntries = this.sortDates(userID);
     let stepGoalMetEntries = userEntries.filter(entry => entry.numSteps > user.dailyStepGoal);
     let days = stepGoalMetEntries.map(entry => entry.date);
     return days;
