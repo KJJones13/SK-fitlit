@@ -15,8 +15,8 @@ class ActivityRepository {
   }
 
   checkStepGoal(userID, date, user) {
-    let dayEntry = this.activityData.filter(entry => entry.userID === userID && entry.date === date);
-    return dayEntry[0].numSteps > user.dailyStepGoal;
+    let dayEntry = this.getDayEntry(userID, date);
+    return dayEntry.numSteps > user.dailyStepGoal;
   }
 
   getMinutesActive(userID, date) {
