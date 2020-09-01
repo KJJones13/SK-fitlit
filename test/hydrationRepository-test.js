@@ -8,7 +8,7 @@ describe.only('Hydration Repository', function() {
   let hydrationRepository;
 
   beforeEach(function() {
-    hydrationRepository = new HydrationRepository(hydrationData)
+    hydrationRepository = new HydrationRepository(hydrationData);
   });
 
   it('should be a function', function() {
@@ -23,6 +23,10 @@ describe.only('Hydration Repository', function() {
     expect(hydrationRepository.hydrationData).to.deep.equal(hydrationData);
   });
 
+  it('should sort the hydrationData for a user', function() {
+    expect(hydrationRepository.sortDates(1)).to.deep.equal(hydrationData);
+  });
+
   it('should calculate the average numOunces', function() {
     expect(hydrationRepository.calculateAverageOunces(1)).to.equal(65);
   });
@@ -31,11 +35,7 @@ describe.only('Hydration Repository', function() {
     expect(hydrationRepository.specificDayOunces(1, "2019/06/19")).to.equal(91);
   });
 
-  it('should sort the hydrationData for a user', function() {
-    expect(hydrationRepository.sortDates(1)).to.deep.equal(hydrationData);
-  });
-
   it('should return weekly ounces', function() {
     expect(hydrationRepository.weeklyOunces(1, "2019/06/15")).to.equal('37oz, 69oz, 96oz, 61oz, 91oz, 50oz, 50');
   });
-});
+})
