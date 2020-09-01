@@ -4,9 +4,15 @@ class ActivityRepository {
     this.data = data;
   }
 
+  getDayEntry(userID, date) {
+    let dayEntry = this.activityData.find(entry => entry.userID === userID && entry.date === date)
+    return dayEntry
+  }
+
   calculateMilesWalked(userID, date, user) {
-    let dayEntry = this.activityData.filter(entry => entry.userID === userID && entry.date === date);
-    return parseFloat(((dayEntry[0].numSteps * user.strideLength) / 5280).toFixed(2));
+    let dayEntry = this.getDayEntry(userID, date);
+    console.log(dayEntry)
+    return parseFloat(((dayEntry.numSteps * user.strideLength) / 5280).toFixed(2));
   }
 
   checkStepGoal(userID, date, user) {

@@ -6,7 +6,7 @@ const ActivityRepository = require('../src/activityRepository');
 const activityData = require('../data/activity-sample-data');
 const data = require('../data/user-sample-data');
 
-describe('Activity Repository', function() {
+describe.only('Activity Repository', function() {
   let userRepository, activityRepository, user;
 
   beforeEach(function() {
@@ -22,6 +22,24 @@ describe('Activity Repository', function() {
   it('should be an instance of ActivityRepository', function() {
     expect(activityRepository).to.be.an.instanceof(ActivityRepository);
   });
+
+  it('should take info from activityData', function() {
+    expect(activityRepository.activityData).to.deep.equal(activityData);
+  });
+
+  it('should take info from data', function() {
+    expect(activityRepository.data).to.deep.equal(data);
+  });
+
+  it('should return the activity data for a given user and day', function() {
+    expect(activityRepository.getDayEntry(1, '2019/06/15')).to.deep.equal({
+      "userID": 1,
+      "date": "2019/06/15",
+      "numSteps": 3577,
+      "minutesActive": 140,
+      "flightsOfStairs": 16
+    })
+  })
 
   it('should calculate how many miles a user has walked that day', function() {
     expect(activityRepository.calculateMilesWalked(1, '2019/06/15', user)).to.equal(2.91)
