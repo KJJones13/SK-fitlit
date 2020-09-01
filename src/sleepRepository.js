@@ -9,6 +9,14 @@ class SleepRepository {
     return dateSort;
   };
 
+  getWeeklyEntries(userID, date) {
+    let allSortedEntries = this.sortDates(userID);
+    console.log(allSortedEntries)
+    let startDate = allSortedEntries.indexOf(allSortedEntries.find(item => item.date === date));
+    let weekEntries = allSortedEntries.slice(startDate, (startDate + 7));
+    return weekEntries;
+  }
+
   getSleepHoursDay(userID, date) {
     let sleepHours = this.sleepData.find(entry => entry.userID === userID && entry.date === date);
     return sleepHours.hoursSlept;
