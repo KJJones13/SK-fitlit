@@ -20,12 +20,12 @@ class ActivityRepository {
   }
 
   getMinutesActive(userID, date) {
-    let dayEntry = this.activityData.filter(entry => entry.userID === userID && entry.date === date);
-    return dayEntry[0].minutesActive;
+    let dayEntry = this.getDayEntry(userID, date);
+    return dayEntry.minutesActive;
   }
 
   getMinutesActiveAverageWeek(userID, date) {
-    let startDate = this.activityData.indexOf(this.activityData.find(item => item.userID === userID && item.date === date));
+    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
     let weekEntries = this.activityData.slice(startDate, (startDate + 7));
     let weeklyMinutesActive = weekEntries.map(entry => entry.minutesActive);
     let averageMinActive = weeklyMinutesActive.reduce((min, entry) => {
@@ -35,7 +35,7 @@ class ActivityRepository {
   }
 
   getFlightsOfStairsAverageWeek(userID, date) {
-    let startDate = this.activityData.indexOf(this.activityData.find(item => item.userID === userID && item.date === date));
+    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
     let weekEntries = this.activityData.slice(startDate, (startDate + 7));
     let weeklyFlightsOfStairs = weekEntries.map(entry => entry.flightsOfStairs);
     let averageFlightsOfStairs = weeklyFlightsOfStairs.reduce((min, entry) => {
@@ -45,7 +45,7 @@ class ActivityRepository {
   }
 
   getStepCountAverageWeek(userID, date) {
-    let startDate = this.activityData.indexOf(this.activityData.find(item => item.userID === userID && item.date === date));
+    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
     let weekEntries = this.activityData.slice(startDate, (startDate + 7));
     let weeklyStepCount = weekEntries.map(entry => entry.numSteps);
     let averageStepCount = weeklyStepCount.reduce((min, entry) => {
@@ -96,7 +96,7 @@ class ActivityRepository {
   }
 
   getStepChallengeTotal(userID, date) {
-    let startDate = this.activityData.indexOf(this.activityData.find(item => item.userID === userID && item.date === date));
+    let startDate = this.activityData.indexOf(this.getDayEntry(userID, date));
     let userEntries = this.activityData.slice(startDate, (startDate + 7));
     let weeklyStepCounts = userEntries.map(step => step.numSteps);
     let weeklyStepTotal = weeklyStepCounts.reduce((steps, entry) => {
