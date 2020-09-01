@@ -11,7 +11,6 @@ class ActivityRepository {
 
   calculateMilesWalked(userID, date, user) {
     let dayEntry = this.getDayEntry(userID, date);
-    console.log(dayEntry)
     return parseFloat(((dayEntry.numSteps * user.strideLength) / 5280).toFixed(2));
   }
 
