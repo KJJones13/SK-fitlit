@@ -6,7 +6,7 @@ const ActivityRepository = require('../src/activityRepository');
 const activityData = require('../data/activity-sample-data');
 const data = require('../data/user-sample-data');
 
-describe('Activity Repository', function() {
+describe.only('Activity Repository', function() {
   let userRepository, activityRepository, user;
 
   beforeEach(function() {
@@ -53,27 +53,27 @@ describe('Activity Repository', function() {
 
   it('should get all the days a user has exceeded their step goal', function() {
     expect(activityRepository.getStepGoalWinDays(1, user)).to.deep.equal(['2019/06/19', '2019/06/20'])
-  })
+  });
 
   it('should get average for all users stair climbed on a specific day', function() {
     expect(activityRepository.getAllUserAverageStairs('2019/06/15')).to.equal(16)
-  })
+  });
 
   it('should get average steps for all users on a specific day', function() {
     expect(activityRepository.getAllUsersAverageSteps('2019/06/15')).to.equal(3577)
-  })
+  });
 
   it('should get average minutes active for all users on a specific day', function() {
     expect(activityRepository.getAllUsersAverageMinActive('2019/06/15')).to.equal(140)
-  })
+  });
 
   it('should total the number of steps for a week for each challenge member', function() {
     expect(activityRepository.getStepChallengeTotal(1, '2019/06/15')).to.equal(47577);
     expect(activityRepository.getStepChallengeTotal(2, '2019/06/15')).to.equal(47590);
     expect(activityRepository.getStepChallengeTotal(3, '2019/06/15')).to.equal(47619)
-  })
+  });
 
   it('should return an array of step challenge members ranked by most steps', function() {
-    expect(activityRepository.getStepChallengeResults(1)).to.deep.equal([{'name': 'Luisa', 'numSteps': 47577}, {'name':'Jarvis', 'numSteps': 47590}, {'name': 'Herminia', 'numSteps':47619}])
-  })
+    expect(activityRepository.getStepChallengeResults(1, '2019/06/15')).to.deep.equal([' Herminia Witting: 47619 Steps', ' Jarvis Considine: 47590 Steps', ' Luisa Hane: 47577 Steps'])
+  });
 });
