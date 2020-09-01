@@ -30,44 +30,44 @@ class SleepRepository {
     let userEntries = this.sleepData.filter(user => user.userID === userID);
     let totalSleepHours = userEntries.reduce((hours, user) => {
       return hours += user.hoursSlept
-    }, 0)
-    return parseFloat(((totalSleepHours / userEntries.length)).toFixed(1))
-  }
+    }, 0);
+    return parseFloat(((totalSleepHours / userEntries.length)).toFixed(1));
+  };
 
   getAverageSleepQuality(userID) {
     let userEntries = this.sleepData.filter(user => user.userID === userID);
     let totalSleepQuality = userEntries.reduce((quality, user) => {
       return quality += user.sleepQuality
-    }, 0)
-    return parseFloat(((totalSleepQuality / userEntries.length)).toFixed(1))
-  }
+    }, 0);
+    return parseFloat(((totalSleepQuality / userEntries.length)).toFixed(1));
+  };
 
   getAllAverageSleepQuality() {
     let totalSleepQuality = this.sleepData.reduce((quality, user) => {
       return quality += user.sleepQuality
-    }, 0)
-    return parseFloat(((totalSleepQuality / this.sleepData.length)).toFixed(1))
-  }
+    }, 0);
+    return parseFloat(((totalSleepQuality / this.sleepData.length)).toFixed(1));
+  };
 
   getWeeklySleepHours(userID, date) {
     let weekEntries = this.getWeeklyEntries(userID, date);
-    let weeklySleepHours = weekEntries.map(entry => entry.hoursSlept)
+    let weeklySleepHours = weekEntries.map(entry => entry.hoursSlept);
     return weeklySleepHours.join(', ');
-  }
+  };
 
   getWeeklySleepQuality(userID, date) {
     let weekEntries = this.getWeeklyEntries(userID, date);
-    let weeklySleepQuality = weekEntries.map(entry => entry.sleepQuality)
+    let weeklySleepQuality = weekEntries.map(entry => entry.sleepQuality);
     return weeklySleepQuality.join(', ');
-  }
+  };
 
   getMostHoursSlept(date) {
     let dateEntries = this.sleepData.filter(entry => entry.date === date);
     let sleepHours = dateEntries.sort((a, b) => b.hoursSlept - a.hoursSlept);
-    let mostHoursSlept = sleepHours.filter(entry => entry.hoursSlept === sleepHours[0].hoursSlept)
+    let mostHoursSlept = sleepHours.filter(entry => entry.hoursSlept === sleepHours[0].hoursSlept);
     let userMostSleep = mostHoursSlept.map(entry => entry.userID);
-    return userMostSleep
-  }
+    return userMostSleep;
+  };
 
   getQualitySleepUsers(date) {
     let allUserIDs = this.sleepData.map(entry => entry.userID);
