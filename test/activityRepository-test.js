@@ -11,7 +11,7 @@ describe.only('Activity Repository', function() {
 
   beforeEach(function() {
     userRepository = new UserRepository(data);
-    activityRepository = new ActivityRepository(activityData)
+    activityRepository = new ActivityRepository(activityData, data)
     user = new User(data[0])
   });
 
@@ -65,5 +65,15 @@ describe.only('Activity Repository', function() {
 
   it('should get average minutes active for all users on a specific day', function() {
     expect(activityRepository.getAllUsersAverageMinActive('2019/06/15')).to.equal(140)
+  })
+
+  it('should total the number of steps for a week for each challenge member', function() {
+    expect(activityRepository.getStepChallengeTotal(1, '2019/06/15')).to.equal(47577);
+    expect(activityRepository.getStepChallengeTotal(2, '2019/06/15')).to.equal(47590);
+    expect(activityRepository.getStepChallengeTotal(3, '2019/06/15')).to.equal(47619)
+  })
+
+  it('should return an array of step challenge members ranked by most steps', function() {
+    expect(activityRepository.getStepChallengeResults(1)).to.deep.equal([{'name': 'Luisa', 'numSteps': 47577}, {'name':'Jarvis', 'numSteps': 47590}, {'name': 'Herminia', 'numSteps':47619}])
   })
 });
