@@ -4,10 +4,10 @@ const User = require('../src/user');
 const UserRepository = require('../src/userRepository');
 const data = require('../data/user-sample-data');
 
-describe('User Repository', function() {
+describe.only('User Repository', () => {
   let user1, userRepository;
 
-  beforeEach(function() {
+  beforeEach(() => {
     let user1 = new User({
       id: 1,
       name: 'Luisa Hane',
@@ -24,23 +24,23 @@ describe('User Repository', function() {
     userRepository = new UserRepository(data);
   });
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     expect(UserRepository).to.be.a('function');
   });
 
-  it('should be an instance of UserRepository', function() {
+  it('should be an instance of UserRepository', () => {
     expect(userRepository).to.be.an.instanceof(UserRepository);
   });
 
-  it('should return user data', function() {
+  it('should return user data', () => {
     expect(userRepository.getUserData(1)).to.equal(user1);
   })
 
-  it('should calculate the average step goal of users', function() {
+  it('should calculate the average step goal of users', () => {
     expect(userRepository.calculateAverageStepGoal()).to.equal(6400)
   });
 
-  it('should find a user name', function() {
+  it('should find a user name', () => {
     // user = new User()
     expect(userRepository.getNameByID(1)).to.equal('Luisa Hane');
   })
