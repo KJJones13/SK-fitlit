@@ -51,7 +51,7 @@ class SleepRepository {
     let startDate = allSortedEntries.indexOf(allSortedEntries.find(item => item.date === date));
     let weekEntries = allSortedEntries.slice(startDate, (startDate + 7));
     let weeklySleepHours = weekEntries.map(entry => entry.hoursSlept)
-    return weeklySleepHours;
+    return weeklySleepHours.join(', ');
   }
 
   getWeeklySleepQuality(userID, date) {
@@ -59,7 +59,7 @@ class SleepRepository {
     let startDate = allSortedEntries.indexOf(allSortedEntries.find(item => item.date === date));
     let weekEntries = allSortedEntries.slice(startDate, (startDate + 7));
     let weeklySleepQuality = weekEntries.map(entry => entry.sleepQuality)
-    return weeklySleepQuality;
+    return weeklySleepQuality.join(', ');
   }
 
   getMostHoursSlept(date) {

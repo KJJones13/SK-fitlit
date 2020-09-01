@@ -37,8 +37,20 @@ main {
   border: 1px solid black;
 }
 
+.user-info-sidebar p {
+  padding-top: 10px;
+}
+
+.user-info-sidebar ul {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
 .sidebar-header-text {
   text-align: center;
+  font-size: 30px;
+  padding-top: 10px;
 }
 
 .user-info-text {
@@ -54,6 +66,7 @@ main {
   border-style: solid;
   border-width: 1px;
   justify-content: center;
+  margin-top: 15px;
 }
 
 .left-section {
@@ -62,25 +75,100 @@ main {
   text-align: center;
   align-items: center;
   width: 25%;
-  height: 100%;
+  height: auto;
   background-color: #CD5C5C;
   border: 1px solid black;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.activity-header {
+  padding-top: 8px;
+  font-size: 30px;
+  color: black;
+}
+
+.todays-activity {
+  font-size: 20px;
+  color: black;
+}
+
+.compare-activity {
+  font-size: 20px;
+  color: black;
+  padding-top: 10px;
+}
+
+.weekly-activity {
+  font-size: 20px;
+  color: black;
+  padding-top: 10px;
 }
 
 .middle-section {
   display: flex;
   flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
   width: 25%;
-  height: 100%;
+  height: auto;
   background-color: #6495ED;
   border: 1px solid black;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.hydration-header {
+  padding-top: 8px;
+  font-size: 30px;
+  color: black;
+}
+
+.todays-ounces {
+  font-size: 20px;
+  color: black;
+}
+
+.weekly-ounces {
+  font-size: 20px;
+  color: black;
+  padding-top: 10px;
 }
 
 .right-section {
   display: flex;
   flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
   width: 25%;
-  height: 100%;
+  height: auto;
   background-color: #9370DB;
   border: 1px solid black;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.sleep-header {
+  padding-top: 8px;
+  font-size: 30px;
+  color: black;
+}
+
+.todays-sleep {
+  font-size: 20px;
+  color: black;
+}
+
+.weekly-sleep {
+  font-size: 20px;
+  color: black;
+  padding-top: 10px;
+}
+
+.average-sleep {
+  font-size: 20px;
+  color: black;
+  padding-top: 10px;
 }

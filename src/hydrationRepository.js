@@ -27,7 +27,7 @@ class HydrationRepository {
     let startDate = allSortedEntries.indexOf(allSortedEntries.find(item => item.date === date));
     let weekEntries = allSortedEntries.slice(startDate, (startDate + 7))
     let weekOunces = weekEntries.map(entry => entry.numOunces)
-    return weekOunces;
+    return weekOunces.join('oz, ');
   }
 }
 
