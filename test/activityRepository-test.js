@@ -6,7 +6,7 @@ const ActivityRepository = require('../src/activityRepository');
 const activityData = require('../data/activity-sample-data');
 const data = require('../data/user-sample-data');
 
-describe.only('Activity Repository', function() {
+describe('Activity Repository', function() {
   let userRepository, activityRepository, user;
 
   beforeEach(function() {

@@ -4,7 +4,7 @@ const User = require('../src/user');
 const HydrationRepository = require('../src/hydrationRepository');
 const hydrationData = require('../data/hydration-sample-data');
 
-describe('Hydration Repository', function() {
+describe.only('Hydration Repository', function() {
   let hydrationRepository;
 
   beforeEach(function() {
@@ -36,6 +36,6 @@ describe('Hydration Repository', function() {
   });
 
   it('should return weekly ounces', function() {
-    expect(hydrationRepository.weeklyOunces(1, "2019/06/15")).to.deep.equal([37, 69, 96, 61, 91, 50, 50]);
+    expect(hydrationRepository.weeklyOunces(1, "2019/06/15")).to.equal('37oz, 69oz, 96oz, 61oz, 91oz, 50oz, 50');
   });
 });
