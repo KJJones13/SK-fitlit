@@ -4,6 +4,13 @@ class ActivityRepository {
     this.data = data;
   }
 
+  checkName(name) {
+    let letters = /^[A-Za-z]+$/;
+    if (!name.match(letters)) {
+      return 'Names can only contain alphabet characters. Try again.';
+    };
+  };
+
   sortDates(userID) {
     let userEntries = this.activityData.filter(user => user.userID === userID);
     let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date));

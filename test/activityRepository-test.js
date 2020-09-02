@@ -6,7 +6,7 @@ const ActivityRepository = require('../src/activityRepository');
 const activityData = require('../data/activity-sample-data');
 const data = require('../data/user-sample-data');
 
-describe('Activity Repository', () => {
+describe.only('Activity Repository', () => {
   let userRepository, activityRepository, user;
 
   beforeEach(() => {
@@ -29,6 +29,10 @@ describe('Activity Repository', () => {
 
   it('should take info from data', () => {
     expect(activityRepository.data).to.deep.equal(data);
+  });
+
+  it('should only accept name in text', () => {
+    expect(activityRepository.checkName('49%$')).to.equal('Names can only contain alphabet characters. Try again.');
   });
 
   it('should sort the activityData for a user', () => {
