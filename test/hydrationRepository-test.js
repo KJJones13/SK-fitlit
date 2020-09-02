@@ -4,7 +4,7 @@ const User = require('../src/user');
 const HydrationRepository = require('../src/hydrationRepository');
 const hydrationData = require('../data/hydration-sample-data');
 
-describe('Hydration Repository', () => {
+describe.only('Hydration Repository', () => {
   let hydrationRepository;
 
   beforeEach(() => {
@@ -21,6 +21,10 @@ describe('Hydration Repository', () => {
 
   it('should take info from hydrationData', () => {
     expect(hydrationRepository.hydrationData).to.deep.equal(hydrationData);
+  });
+
+  it('should only accept date in yyyy/mm/dd format', () => {
+    expect(hydrationRepository.checkDate('02/12/2020')).to.equal('Invalid date. Date must be in YYYY/MM/DD format.');
   });
 
   it('should sort the hydrationData for a user', () => {
