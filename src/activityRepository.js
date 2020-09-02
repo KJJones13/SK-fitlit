@@ -11,6 +11,12 @@ class ActivityRepository {
     };
   };
 
+  checkDate(date) {
+    if (date.includes('/', 2)) {
+      return 'Invalid date. Date must be in YYYY/MM/DD format.'
+    };
+  };
+
   sortDates(userID) {
     let userEntries = this.activityData.filter(user => user.userID === userID);
     let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date));

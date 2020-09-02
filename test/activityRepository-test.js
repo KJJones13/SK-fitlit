@@ -35,6 +35,10 @@ describe.only('Activity Repository', () => {
     expect(activityRepository.checkName('49%$')).to.equal('Names can only contain alphabet characters. Try again.');
   });
 
+  it('should only accept date in yyyy/mm/dd format', () => {
+    expect(activityRepository.checkDate('02/12/2020')).to.equal('Invalid date. Date must be in YYYY/MM/DD format.');
+  });
+
   it('should sort the activityData for a user', () => {
     expect(activityRepository.sortDates(1)).to.deep.equal([{
       "userID": 1,
