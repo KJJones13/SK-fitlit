@@ -44,6 +44,10 @@ describe.only('User', function() {
     expect(user1.checkName('49%$')).to.equal('Names can only contain alphabet characters. Try again.');
   });
 
+  it('should only accept date in yyyy/mm/dd format', () => {
+    expect(user1.checkDate('02/12/2020')).to.equal('Invalid date. Date must be in YYYY/MM/DD format.');
+  });
+
   it('should return a users first name only', function() {
     expect(user1.getFirstName()).to.equal('Luisa');
   });
