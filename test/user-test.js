@@ -4,7 +4,7 @@ const User = require('../src/user');
 const userData = require('../data/user-sample-data');
 const UserRepository = require('../src/userRepository');
 
-describe('User', function() {
+describe('User', () => {
   let user1;
   beforeEach(() => {
     user1 = new User({

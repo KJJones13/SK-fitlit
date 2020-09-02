@@ -6,7 +6,7 @@ const SleepRepository = require('../src/sleepRepository');
 const sleepData = require('../data/sleep-sample-data');
 
 
-describe('Sleep Repository', () => {
+describe.only('Sleep Repository', () => {
   let sleepRepository, userRepository;
 
   beforeEach(() => {
@@ -20,6 +20,10 @@ describe('Sleep Repository', () => {
 
   it('should be an instance of SleepRepository', () => {
     expect(sleepRepository).to.be.an.instanceof(SleepRepository);
+  });
+
+  it('should only accept date in yyyy/mm/dd format', () => {
+    expect(sleepRepository.checkDate('02/12/2020')).to.equal('Invalid date. Date must be in YYYY/MM/DD format.');
   });
 
   it('should return sorted user data', () => {

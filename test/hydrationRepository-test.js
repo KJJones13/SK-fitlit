@@ -4,7 +4,7 @@ const User = require('../src/user');
 const HydrationRepository = require('../src/hydrationRepository');
 const hydrationData = require('../data/hydration-sample-data');
 
-describe.only('Hydration Repository', () => {
+describe('Hydration Repository', () => {
   let hydrationRepository;
 
   beforeEach(() => {
