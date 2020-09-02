@@ -9,6 +9,19 @@ class User {
     this.friends = userData.friends;
   }
 
+  checkName(name) {
+    let letters = /^[A-Za-z]+$/;
+    if (!name.match(letters)) {
+      return 'Names can only contain alphabet characters. Try again.';
+    };
+  };
+
+  checkDate(date) {
+    if (date.includes('/', 2)) {
+      return 'Invalid date. Date must be in YYYY/MM/DD format.'
+    }
+  }
+
   getFirstName() {
     let fullName = this.name.split(' ')
     let firstName = fullName[0];
