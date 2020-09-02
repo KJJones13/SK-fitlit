@@ -4,7 +4,7 @@ const User = require('../src/user');
 const userData = require('../data/user-sample-data');
 const UserRepository = require('../src/userRepository');
 
-describe('User', () => {
+describe.only('User', function() {
   let user1;
   beforeEach(() => {
     user1 = new User({
@@ -40,9 +40,12 @@ describe('User', () => {
     expect(user1.friends).to.deep.equal([16, 4, 8])
   });
 
-  it('should return a users first name only', () => {
-    expect(user1.getFirstName()).to.equal('Luisa');
-  })
-});
+  it('should only accept name in text', () => {
+    expect(user1.checkName('49%$')).to.equal('Names can only contain alphabet characters. Try again.');
+  });
 
-// console.log(userData);
+  it('should return a users first name only', function() {
+    expect(user1.getFirstName()).to.equal('Luisa');
+  });
+
+});
