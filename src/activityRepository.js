@@ -128,35 +128,30 @@ class ActivityRepository {
     return weeklyStepTotal;
   }
 
-  // getStepChallengers(id, friends) {
-  //   console.log(userRepository.getNameByID(id));
-  //   let userEntry = this.data.find(entry => entry.id === id);
-  //   let friends = userEntry.friends;
-  //   // let friendsNames =
-  // }
-  getStepChallengeResults(id, userID, date) {
+  getStepChallengeResults(id, date) {
     let userEntry = this.data.find(entry => entry.id === id);
     let friends = userEntry.friends;
-    let userSteps = this.getStepChallengeTotal(userID, date);
-    console.log(userSteps);
-    let friendsSteps = friends.map(friend => friend.getStepChallengeTotal())
-    //console.log(friendsSteps)
-    // let userEntry = this.data.find(entry => entry.id === id);
-    // // console.log(userEntry.friends)
-    // let friends = userEntry.friends;
-    // console.log(stepChallengeResults)
-    // return friends.map(friend => {
-    //   let stepChallegeResults = {};
-    //   stepChallengeResults[friends] = {}
-    //   return stepChallengeResults
-    // })
-
-
+    let userSteps = this.getStepChallengeTotal(id, date);
+    let friendsSteps = friends.map(friend => {
+      let friendName = this.data.find(entry => entry.id === friend).name;
+      let retObj = {};
+      retObj['name'] = friendName
+      retObj['numSteps'] = this.getStepChallengeTotal(friend, date)
+      return retObj
+    })
+    let ourName = this.data.find(entry => entry.id === id).name
+    let userObj = {}
+    userObj['name'] = ourName
+    userObj['numSteps'] = userSteps
+    friendsSteps.push(userObj)
+    let sortedSteps = friendsSteps.sort((a, b) => b.numSteps - a.numSteps)
+    return sortedSteps.reduce((acc, cur) => {
+      let formattedName = ' ' + cur.name + ': ' + cur.numSteps + ' Steps';
+      acc.push(formattedName)
+      return acc
+    },[])
   }
 }
-
-
-  //Choose a user. Assign user friends. Run getStepChallengeTotal on each person. Find friends names. Put friends names and step total into new array of objects. Sort objects based on descending order of step counts.
 
 if (typeof module !== 'undefined') {
   module.exports = ActivityRepository;
