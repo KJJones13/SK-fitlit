@@ -4,7 +4,7 @@ const User = require('../src/user');
 const UserRepository = require('../src/userRepository');
 const data = require('../data/user-sample-data');
 
-describe.only('User Repository', () => {
+describe('User Repository', () => {
   let user1, userRepository;
 
   beforeEach(() => {

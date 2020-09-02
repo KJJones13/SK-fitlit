@@ -196,22 +196,6 @@ describe('Activity Repository', () => {
 
   it('should get average minutes active for all users on a specific day', () => {
     expect(activityRepository.getAllUsersAverageMinActive('2019/06/15')).to.equal(140);
-
-  it('should get all the days a user has exceeded their step goal', function() {
-    expect(activityRepository.getStepGoalWinDays(1, user)).to.deep.equal(['2019/06/19', '2019/06/20'])
-  });
-
-  it('should get average for all users stair climbed on a specific day', function() {
-    expect(activityRepository.getAllUserAverageStairs('2019/06/15')).to.equal(16)
-  });
-
-  it('should get average steps for all users on a specific day', function() {
-    expect(activityRepository.getAllUsersAverageSteps('2019/06/15')).to.equal(3577)
-  });
-
-  it('should get average minutes active for all users on a specific day', function() {
-    expect(activityRepository.getAllUsersAverageMinActive('2019/06/15')).to.equal(140)
-
   });
 
   it('should total the number of steps for a week for each challenge member', () => {
@@ -221,6 +205,6 @@ describe('Activity Repository', () => {
   });
 
   it('should return an array of step challenge members ranked by most steps', () => {
-    expect(activityRepository.getStepChallengeResults(1)).to.deep.equal([{'name': 'Luisa', 'numSteps': 47577}, {'name':'Jarvis', 'numSteps': 47590}, {'name': 'Herminia', 'numSteps':47619}]);  
+    expect(activityRepository.getStepChallengeResults(1, '2019/06/15')).to.deep.equal([' Herminia Witting: 47619 Steps', ' Jarvis Considine: 47590 Steps', ' Luisa Hane: 47577 Steps']);
   });
 });
