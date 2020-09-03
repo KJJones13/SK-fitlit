@@ -91,7 +91,7 @@ class SleepRepository {
       retObj[entryKey] = entry[entryKey].reduce((acc, cur) => {
         return acc += parseInt(cur)
       }, 0)
-      if(retObj[entryKey] / 7 > 3) {
+      if (retObj[entryKey] / 7 > 3) {
         return entryKey
       }
     })
