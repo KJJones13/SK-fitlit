@@ -3,10 +3,10 @@
 }
 
 body {
+  height: 100%;
   font-family: 'Open Sans';
   margin: 0;
   background-color: #B0C4DE;
-  height: auto;
 }
 
 h1 {
@@ -17,13 +17,12 @@ h1 {
 }
 
 main {
+  height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
 }
 
 .sidebar {
-  display: flex;
-  flex-direction: row;
   width: 25%;
   height: 100%;
 }
@@ -35,6 +34,7 @@ main {
   text-align: center;
   background-color: #D3D3D3;
   border: 1px solid black;
+  height: auto;
 }
 
 .user-info-sidebar p {
@@ -71,9 +71,10 @@ main {
 
 .left-section {
   display: flex;
-  flex-direction: row;
+  flex: auto;
   text-align: center;
   align-items: center;
+  justify-content: space-around;
   width: 25%;
   height: auto;
   background-color: #CD5C5C;
@@ -83,6 +84,7 @@ main {
 }
 
 .activity-header {
+  text-decoration: underline;
   padding-top: 8px;
   font-size: 30px;
   color: black;
@@ -91,23 +93,26 @@ main {
 .todays-activity {
   font-size: 20px;
   color: black;
+  padding-bottom: 10px;
 }
 
 .compare-activity {
   font-size: 20px;
   color: black;
-  padding-top: 10px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .weekly-activity {
   font-size: 20px;
   color: black;
-  padding-top: 10px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .middle-section {
   display: flex;
-  flex-direction: row;
+  flex: auto;
   text-align: center;
   align-items: center;
   justify-content: space-around;
@@ -120,6 +125,7 @@ main {
 }
 
 .hydration-header {
+  text-decoration: underline;
   padding-top: 8px;
   font-size: 30px;
   color: black;
@@ -128,17 +134,19 @@ main {
 .todays-ounces {
   font-size: 20px;
   color: black;
+  padding-bottom: 10px;
 }
 
 .weekly-ounces {
   font-size: 20px;
   color: black;
-  padding-top: 10px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .right-section {
   display: flex;
-  flex-direction: row;
+  flex: auto;
   text-align: center;
   align-items: center;
   justify-content: space-around;
@@ -150,7 +158,28 @@ main {
   font-size: 20px;
 }
 
+.bottom-section {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: auto;
+  background-color: lightyellow;
+  border: 1px solid black;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.challenge-header {
+  text-decoration: underline;
+  padding-top: 8px;
+  font-size: 30px;
+  color: black;
+}
+
 .sleep-header {
+  text-decoration: underline;
   padding-top: 8px;
   font-size: 30px;
   color: black;
