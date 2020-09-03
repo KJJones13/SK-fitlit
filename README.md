@@ -18,4 +18,4 @@ The intention of this project was for students to develop an app that displays i
 
 ## Screenshot
 
-![alt text](images/Screen Shot 2020-09-02 at 7.07.34 PM.png)
+![alt text](https://github.com/KJJones13/SK-fitlit/blob/main/images/Screen%20Shot%202020-09-02%20at%207.07.34%20PM.png)
