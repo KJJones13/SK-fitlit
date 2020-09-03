@@ -82,21 +82,21 @@ class SleepRepository {
     let uniqueUserIDs = allUserIDs.filter((id, index, arr) => arr.indexOf(id) === index);
     let userWeeklyQuality = uniqueUserIDs.map(id => {
       let retObj = {}
-      retObj[id] = this.getWeeklySleepQuality(id, date)
+      retObj[id] = this.getWeeklySleepQuality(id, date).split(', ')
       return retObj
     })
     let weeklyAverageQuality = userWeeklyQuality.map(entry => {
       let retObj = {}
       let entryKey = Object.keys(entry)[0]
       retObj[entryKey] = entry[entryKey].reduce((acc, cur) => {
-        return acc += cur
-      })
-      if (retObj[entryKey] / 7 > 3) {
+        return acc += parseInt(cur)
+      }, 0)
+      if(retObj[entryKey] / 7 > 3) {
         return entryKey
       }
-    }, 0)
+    })
     let goodSleepers = weeklyAverageQuality.filter(function(id) {
-      return id !== null
+      return id != null
     })
     return goodSleepers
   }

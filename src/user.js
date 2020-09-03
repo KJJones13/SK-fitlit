@@ -13,8 +13,8 @@ class User {
     let letters = /^[A-Za-z]+$/;
     if (!name.match(letters)) {
       return 'Names can only contain alphabet characters. Try again.';
-    };
-  };
+    }
+  }
 
   checkDate(date) {
     if (date.includes('/', 2)) {

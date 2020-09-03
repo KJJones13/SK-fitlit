@@ -1,6 +1,5 @@
 const chai = require('chai');
 const expect = chai.expect;
-const User = require('../src/user');
 const HydrationRepository = require('../src/hydrationRepository');
 const hydrationData = require('../data/hydration-sample-data');
 

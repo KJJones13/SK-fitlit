@@ -36,7 +36,7 @@ function displayInfoCard() {
   ${getFriendsNames()}`;
 }
 
-function getFriendsNames(data) {
+function getFriendsNames() {
   return user.friends.map(friend => {
     const friendMatch = userRepository.data.find(user => user.id === friend);
     return friendMatch.name;
@@ -45,7 +45,6 @@ function getFriendsNames(data) {
 
 function displayHydrationInfo() {
   hydrationInfo[0].innerText = ` ${hydrationRepository.specificDayOunces(user.id, '2019/06/19')} oz`;
-  let weekOunces = hydrationRepository.weeklyOunces(user.id, '2019/06/19')
   hydrationInfo[1].innerText = `${hydrationRepository.weeklyOunces(user.id, '2019/06/19')}oz`;
 }
 
