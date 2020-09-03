@@ -8,20 +8,22 @@ class ActivityRepository {
     let letters = /^[A-Za-z]+$/;
     if (!name.match(letters)) {
       return 'Names can only contain alphabet characters. Try again.';
-    };
-  };
+    }
+  }
 
   checkDate(date) {
     if (date.includes('/', 2)) {
       return 'Invalid date. Date must be in YYYY/MM/DD format.'
-    };
-  };
+    }
+  }
 
   sortDates(userID) {
     let userEntries = this.activityData.filter(user => user.userID === userID);
-    let dateSort = userEntries.sort((a, b) => new Date(a.date) - new Date(b.date));
+    let dateSort = userEntries.sort((a, b) => {
+      new Date(a.date) - new Date(b.date)
+    });
     return dateSort;
-  };
+  }
 
   getDayEntry(userID, date) {
     let dayEntry = this.activityData.find(entry => entry.userID === userID && entry.date === date);
@@ -62,10 +64,10 @@ class ActivityRepository {
   getFlightsOfStairsAverageWeek(userID, date) {
     let weekEntries = this.getWeekEntries(userID, date);
     let weeklyFlightsOfStairs = weekEntries.map(entry => entry.flightsOfStairs);
-    let averageFlightsOfStairs = weeklyFlightsOfStairs.reduce((min, entry) => {
+    let avgFlightsOfStairs = weeklyFlightsOfStairs.reduce((min, entry) => {
       return min += entry;
     }, 0)
-    return parseFloat((averageFlightsOfStairs / weeklyFlightsOfStairs.length).toFixed(0));
+    return parseFloat((avgFlightsOfStairs / weeklyFlightsOfStairs.length).toFixed(0));
   }
 
   getStepCountAverageWeek(userID, date) {
@@ -149,7 +151,7 @@ class ActivityRepository {
       let formattedName = ' ' + cur.name + ': ' + cur.numSteps + ' Steps';
       acc.push(formattedName)
       return acc
-    },[])
+    }, [])
   }
 }
 

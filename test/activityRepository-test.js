@@ -1,17 +1,14 @@
 const chai = require('chai');
 const expect = chai.expect;
-const UserRepository = require('../src/userRepository');
 const User = require('../src/user');
 const ActivityRepository = require('../src/activityRepository');
 const activityData = require('../data/activity-sample-data');
 const data = require('../data/user-sample-data');
 
 describe('Activity Repository', () => {
-
-  let userRepository, activityRepository, user;
+  let activityRepository, user;
 
   beforeEach(() => {
-    userRepository = new UserRepository(data);
     activityRepository = new ActivityRepository(activityData, data);
     user = new User(data[0]);
   });
@@ -183,7 +180,9 @@ describe('Activity Repository', () => {
   });
 
   it('should get all the days a user has exceeded their step goal', () => {
-    expect(activityRepository.getStepGoalWinDays(1, user)).to.deep.equal(['2019/06/19', '2019/06/20']);
+    expect(activityRepository.getStepGoalWinDays(1, user)).to.deep.equal(
+      [ '2019/06/19',
+        '2019/06/20']);
   });
 
   it('should get average for all users stair climbed on a specific day', () => {
@@ -205,6 +204,9 @@ describe('Activity Repository', () => {
   });
 
   it('should return an array of step challenge members ranked by most steps', () => {
-    expect(activityRepository.getStepChallengeResults(1, '2019/06/15')).to.deep.equal([' Herminia Witting: 47619 Steps', ' Jarvis Considine: 47590 Steps', ' Luisa Hane: 47577 Steps']);
+    expect(activityRepository.getStepChallengeResults(1, '2019/06/15')).to.deep.equal(
+      [ ' Herminia Witting: 47619 Steps',
+        ' Jarvis Considine: 47590 Steps',
+        ' Luisa Hane: 47577 Steps']);
   });
 });

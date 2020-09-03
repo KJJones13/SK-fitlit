@@ -4,7 +4,7 @@ class UserRepository {
   }
 
   getUserData(id) {
-    let userMatch = this.data.find(user => id === this.data.id)
+    let userMatch = this.data.find(item => id === this.data.id)
     return userMatch;
   }
 
@@ -18,7 +18,7 @@ class UserRepository {
   getNameByID(id) {
     const match = this.data.find(name => name.id === id);
     return match.name;
-  };
+  }
 }
 
 if (typeof module !== 'undefined') {

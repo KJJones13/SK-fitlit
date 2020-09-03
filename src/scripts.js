@@ -7,7 +7,6 @@ const challengeInfo = document.querySelector('.challenge-info');
 const user = new User(userData[10]);
 const userRepository = new UserRepository(userData);
 const hydrationRepository = new HydrationRepository(hydrationData);
-const hydration = new Hydration(hydrationData);
 const sleepRepository = new SleepRepository(sleepData);
 const activityRepository = new ActivityRepository(activityData, userData);
 
@@ -26,7 +25,7 @@ function loadHandler() {
 
 function greeting() {
   userGreeting.innerText = `Welcome, ${user.getFirstName()}!`;
-};
+}
 
 function displayInfoCard() {
   userInfo[0].innerText = `${user.address}`;
@@ -36,27 +35,26 @@ function displayInfoCard() {
   userInfo[4].innerText = `Average Step Goal: ${userRepository.calculateAverageStepGoal()}`;
   userInfo[5].innerText = `Friends:
   ${getFriendsNames()}`;
-};
+}
 
-function getFriendsNames(data) {
+function getFriendsNames() {
   return user.friends.map(friend => {
     const friendMatch = userRepository.data.find(user => user.id === friend);
     return friendMatch.name;
   });
-};
+}
 
 function displayHydrationInfo() {
   hydrationInfo[0].innerText = ` ${hydrationRepository.specificDayOunces(user.id, '2019/06/19')} oz`;
-  let weekOunces = hydrationRepository.weeklyOunces(user.id, '2019/06/19')
   hydrationInfo[1].innerText = `${hydrationRepository.weeklyOunces(user.id, '2019/06/19')}oz`;
-};
+}
 
 function displaySleepInfo() {
   sleepInfo[0].innerText = ` ${sleepRepository.getSleepHoursDay(user.id, '2019/06/19')} Hours - ${sleepRepository.getSleepQualityDay(user.id, '2019/06/19')} Sleep Quality`;
   sleepInfo[1].innerText = ` ${sleepRepository.getWeeklySleepHours(user.id, '2019/06/19')} Hours -
   ${sleepRepository.getWeeklySleepQuality(user.id, '2019/06/19')} Sleep Quality`;
   sleepInfo[2].innerText = ` ${sleepRepository.getAverageSleepHours(user.id)} Hours - ${sleepRepository.getAverageSleepQuality(user.id)} Sleep Quality`;
-};
+}
 
 function displayActivityInfo() {
   activityInfo[0].innerText = `Steps: ${displayStepsForDay(user.id, '2019/06/19')}`;
@@ -75,9 +73,9 @@ function displayChallengeInfo() {
 function displayStepsForDay(userID, date) {
   let userEntry = activityData.find(entry => entry.userID === userID && entry.date === date);
   return userEntry.numSteps;
-};
+}
 
 function displayStairsClimbedForDay(userID, date) {
   let userEntry = activityData.find(entry => entry.userID === userID && entry.date === date);
   return userEntry.flightsOfStairs;
-};
+}
